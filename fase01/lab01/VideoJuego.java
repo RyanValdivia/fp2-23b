@@ -17,10 +17,10 @@ public class VideoJuego {
         int lvl5 = sc.nextInt();
 
         System.out.println("Soldado 1: " + sold1 + " y su nivel de vida es: " + lvl1);
-        System.out.println("Soldado 1: " + sold2 + " y su nivel de vida es: " + lvl2);
-        System.out.println("Soldado 1: " + sold3 + " y su nivel de vida es: " + lvl3);
-        System.out.println("Soldado 1: " + sold4 + " y su nivel de vida es: " + lvl4);
-        System.out.println("Soldado 1: " + sold5 + " y su nivel de vida es: " + lvl5);
+        System.out.println("Soldado 2: " + sold2 + " y su nivel de vida es: " + lvl2);
+        System.out.println("Soldado 3: " + sold3 + " y su nivel de vida es: " + lvl3);
+        System.out.println("Soldado 4: " + sold4 + " y su nivel de vida es: " + lvl4);
+        System.out.println("Soldado 5: " + sold5 + " y su nivel de vida es: " + lvl5);
 
         sc.close();
     }
