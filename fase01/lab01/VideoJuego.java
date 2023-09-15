@@ -4,23 +4,17 @@ public class VideoJuego {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Ingrese los nombres de los soldados y su respectivo nivel de vida: ");
-        String sold1 = sc.next();
-        int lvl1 = sc.nextInt();
-        String sold2 = sc.next();
-        int lvl2 = sc.nextInt();
-        String sold3 = sc.next();
-        int lvl3 = sc.nextInt();
-        String sold4 = sc.next();
-        int lvl4 = sc.nextInt();
-        String sold5 = sc.next();
-        int lvl5 = sc.nextInt();
+        System.out.println("Ingrese los nombres de los soldados");
 
-        System.out.println("Soldado 1: " + sold1 + " y su nivel de vida es: " + lvl1);
-        System.out.println("Soldado 2: " + sold2 + " y su nivel de vida es: " + lvl2);
-        System.out.println("Soldado 3: " + sold3 + " y su nivel de vida es: " + lvl3);
-        System.out.println("Soldado 4: " + sold4 + " y su nivel de vida es: " + lvl4);
-        System.out.println("Soldado 5: " + sold5 + " y su nivel de vida es: " + lvl5);
+        String[] soldiers = new String[5];
+
+        for (int i = 0; i < 5; i++) {
+            soldiers[i] = sc.next();
+        }
+
+        for (int i = 1; i < 6; i++) {
+            System.out.println("Soldado " + i + ": " + soldiers[i]);
+        }
 
         sc.close();
     }
