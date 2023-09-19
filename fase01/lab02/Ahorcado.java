@@ -34,22 +34,22 @@ public class Ahorcado {
         String ahor5 = " +---+ \n" +
                 " |   | \n" +
                 " O   | \n" +
-                "/|\\ | \n" +
+                "/|\\  | \n" +
                 "     | \n" +
                 "     | \n" +
                 "========= ";
         String ahor6 = " +---+ \n" +
                 " |   | \n" +
                 " O   | \n" +
-                "/|\\ | \n" +
+                "/|\\  | \n" +
                 "/    | \n" +
                 "     | \n" +
                 "========= ";
         String ahor7 = " +---+ \n" +
                 " |   | \n" +
                 " O   | \n" +
-                "/|\\ | \n" +
-                "/ \\ | \n" +
+                "/|\\  | \n" +
+                "/ \\  | \n" +
                 "     | \n" +
                 "========= ";
 
@@ -61,6 +61,7 @@ public class Ahorcado {
         System.out.println(figuras[0]);
         mostrarBlancos(palSecreta);
         System.out.println("\n");
+        int turnos = 1;
 
         while (contador <= 6) {
             letra = ingreseLetra();
@@ -68,8 +69,15 @@ public class Ahorcado {
                 mostrarBlancosActualizados(letra);
             } else {
                 System.out.println(figuras[contador]);
+                contador = contador + 1;
             }
-            contador = contador + 1;
+            turnos++;
+        }
+        System.out.println(contador);
+        if (contador == 7) {
+            System.out.println("Perdiste, prueba de nuevo");
+        } else {
+            System.out.println("Ganaste!, tardaste " + turnos + " en vencer");
         }
         // COMPLETAR PARA INDICAR SI GANÓ, PERDIÓ Y CUÁNTOS TURNOS NECESITÓ
         System.out.println("\n");
