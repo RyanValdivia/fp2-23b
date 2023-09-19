@@ -61,6 +61,7 @@ public class Ahorcado {
         System.out.println(figuras[0]);
         mostrarBlancos(palSecreta);
         System.out.println("\n");
+
         while (contador <= 6) {
             letra = ingreseLetra();
             if (letraEnPalabraSecreta(letra, palSecreta)) {
@@ -75,7 +76,6 @@ public class Ahorcado {
     }
 
     public static String getPalabraSecreta(String[] lasPalabras) {
-        String palSecreta;
         int ind;
         int indiceMayor = lasPalabras.length - 1;
         int indiceMenor = 0;
@@ -94,8 +94,8 @@ public class Ahorcado {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese letra: ");
         laLetra = sc.next();
-        while (laLetra.length() != 1) {
-            System.out.println("Ingrese letra: "); // COMPLETAR PARA VALIDAR CARACTERES PERMITIDOS
+        while (laLetra.length() != 1 && noEsCaracter(laLetra)) {
+            System.out.println("Ingrese solo letras, vuelva a intentarlo");
             laLetra = sc.next();
         }
         return laLetra;
@@ -103,11 +103,19 @@ public class Ahorcado {
 
     public static boolean letraEnPalabraSecreta(String letra, String palSecreta) {
         // COMPLETAR
-        return false;
+        return palSecreta.indexOf(letra) != -1;
     }
 
     public static void mostrarBlancosActualizados(String letra) {
         // COMPLETAR
         System.out.println("PROCESANDO.....");
+    }
+
+    public static boolean noEsCaracter(String str) {
+        if (str == null || str.equals("")) {
+            return false;
+        }
+        char c = str.charAt(0);
+        return ('0' <= c && c <= '9');
     }
 }
