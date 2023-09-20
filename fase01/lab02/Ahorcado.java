@@ -62,18 +62,17 @@ public class Ahorcado {
         char[] secreta = palSecreta.toCharArray();
         char[] incognita = crearVacio(palSecreta);
         String blacklist = getBlacklist(palSecreta);
-        System.out.println(palSecreta + "  " + blacklist);
-        mostrarPalabra(incognita);
         System.out.println("\n");
         int turnos = 1;
         while (contador <= 6) {
             mostrarPalabra(incognita);
+            System.out.println();
             letra = ingreseLetra();
-            System.out.println(blacklist);
             if (letraEnPalabraSecreta(letra, blacklist)) {
                 blacklist = quitarLetra(blacklist, letra);
                 incognita = modificarArreglo(incognita, secreta, letra);
                 if (blacklist.length() == 0) {
+                    mostrarPalabra(incognita);
                     break;
                 }
             } else {
@@ -82,13 +81,11 @@ public class Ahorcado {
             }
             turnos++;
         }
-        System.out.println(contador);
         if (contador == 7) {
             System.out.println("Perdiste, prueba de nuevo");
         } else {
-            System.out.println("Ganaste!, tardaste " + turnos + " en vencer");
+            System.out.println("Ganaste!, tardaste " + turnos + " turnos en vencer");
         }
-        // COMPLETAR PARA INDICAR SI GANÓ, PERDIÓ Y CUÁNTOS TURNOS NECESITÓ
         System.out.println("\n");
     }
 
@@ -105,7 +102,7 @@ public class Ahorcado {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese letra: ");
         laLetra = sc.next();
-        while (laLetra.length() != 1 && noEsCaracter(laLetra)) {
+        while (laLetra.length() != 1 || !esCaracter(laLetra)) {
             System.out.println("Ingrese solo letras, vuelva a intentarlo");
             laLetra = sc.next();
         }
@@ -113,12 +110,10 @@ public class Ahorcado {
     }
 
     public static boolean letraEnPalabraSecreta(String letra, String palSecreta) {
-        // COMPLETAR
         return palSecreta.indexOf(letra) != -1;
     }
 
     public static void mostrarPalabra(char[] letras) {
-        // COMPLETAR
         System.out.println("PROCESANDO.....");
         for (int i = 0; i < letras.length; i++) {
             System.out.print(letras[i] + " ");
@@ -126,12 +121,12 @@ public class Ahorcado {
         System.out.println();
     }
 
-    public static boolean noEsCaracter(String str) {
+    public static boolean esCaracter(String str) {
         if (str == null || str.equals("")) {
             return false;
         }
         char c = str.charAt(0);
-        return ('0' <= c && c <= '9');
+        return ('a' <= c && c <= 'z');
     }
 
     public static char[] crearVacio(String str) {
