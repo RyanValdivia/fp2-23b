@@ -59,14 +59,23 @@ public class Ahorcado {
         String[] palabras = { "programacion", "java", "identacion", "clases", "objetos", "desarrollador", "pruebas" };
         String palSecreta = getPalabraSecreta(palabras);
         System.out.println(figuras[0]);
-        mostrarBlancos(palSecreta);
+        char[] secreta = palSecreta.toCharArray();
+        char[] incognita = crearVacio(palSecreta);
+        String blacklist = getBlacklist(palSecreta);
+        System.out.println(palSecreta + "  " + blacklist);
+        mostrarPalabra(incognita);
         System.out.println("\n");
         int turnos = 1;
-
         while (contador <= 6) {
+            mostrarPalabra(incognita);
             letra = ingreseLetra();
-            if (letraEnPalabraSecreta(letra, palSecreta)) {
-                mostrarBlancosActualizados(letra);
+            System.out.println(blacklist);
+            if (letraEnPalabraSecreta(letra, blacklist)) {
+                blacklist = quitarLetra(blacklist, letra);
+                incognita = modificarArreglo(incognita, secreta, letra);
+                if (blacklist.length() == 0) {
+                    break;
+                }
             } else {
                 System.out.println(figuras[contador]);
                 contador = contador + 1;
@@ -91,12 +100,6 @@ public class Ahorcado {
         return lasPalabras[ind];
     }
 
-    public static void mostrarBlancos(String palabra) {
-        for (int i = 0; i < palabra.length(); i++)
-            System.out.print("_ ");
-
-    }
-
     public static String ingreseLetra() {
         String laLetra;
         Scanner sc = new Scanner(System.in);
@@ -114,9 +117,13 @@ public class Ahorcado {
         return palSecreta.indexOf(letra) != -1;
     }
 
-    public static void mostrarBlancosActualizados(String letra) {
+    public static void mostrarPalabra(char[] letras) {
         // COMPLETAR
         System.out.println("PROCESANDO.....");
+        for (int i = 0; i < letras.length; i++) {
+            System.out.print(letras[i] + " ");
+        }
+        System.out.println();
     }
 
     public static boolean noEsCaracter(String str) {
@@ -125,5 +132,39 @@ public class Ahorcado {
         }
         char c = str.charAt(0);
         return ('0' <= c && c <= '9');
+    }
+
+    public static char[] crearVacio(String str) {
+        char[] incognito = new char[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            incognito[i] = '_';
+        }
+        return incognito;
+    }
+
+    public static String getBlacklist(String str) {
+        String blacklist = "" + str.charAt(0);
+        for (int i = 0; i < str.length(); i++) {
+            if (blacklist.indexOf(str.charAt(i)) == -1) {
+                blacklist += str.charAt(i);
+            }
+        }
+        return blacklist;
+    }
+
+    public static String quitarLetra(String blacklist, String letra) {
+        int idx = blacklist.indexOf(letra);
+        blacklist = blacklist.substring(0, idx) + blacklist.substring(idx + 1);
+        return blacklist;
+    }
+
+    public static char[] modificarArreglo(char[] incognita, char[] palabra, String letra) {
+        char actual = letra.charAt(0);
+        for (int i = 0; i < incognita.length; i++) {
+            if (palabra[i] == actual) {
+                incognita[i] = actual;
+            }
+        }
+        return incognita;
     }
 }
