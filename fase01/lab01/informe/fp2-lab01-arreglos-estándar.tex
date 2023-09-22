@@ -1,0 +1,545 @@
+%package list
+\documentclass{article}
+\usepackage[top=3cm, bottom=3cm, outer=3cm, inner=3cm]{geometry}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{url}
+%\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{array}
+%\usepackage{multicol}
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+\usepackage{natbib}
+\usepackage{pdfpages}
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{svg}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstdefinestyle{ascii-tree}{
+    literate={├}{|}1 {─}{--}1 {└}{+}1 
+  }
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+%\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{array}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\itemEmail}{rvaldiviase@unsa.edu.pe}
+\newcommand{\itemStudent}{Ryan Fabian Valdivia Segovia}
+\newcommand{\itemCourse}{Fundamentos de la programación 2}
+\newcommand{\itemCourseCode}{1701213}
+\newcommand{\itemSemester}{II}
+\newcommand{\itemUniversity}{Universidad Nacional de San Agustín de Arequipa}
+\newcommand{\itemFaculty}{Facultad de Ingeniería de Producción y Servicios}
+\newcommand{\itemDepartment}{Departamento Académico de Ingeniería de Sistemas e Informática}
+\newcommand{\itemSchool}{Escuela Profesional de Ingeniería de Sistemas}
+\newcommand{\itemAcademic}{2023 - B}
+\newcommand{\itemInput}{Del 11 Abril 2023}
+\newcommand{\itemOutput}{Al 17 Abril 2023}
+\newcommand{\itemPracticeNumber}{01}
+\newcommand{\itemTheme}{Arreglos estándar}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[english,spanish]{babel}
+\usepackage[utf8]{inputenc}
+\AtBeginDocument{\selectlanguage{spanish}}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\refname}{Referencias}
+\renewcommand{\tablename}{Tabla} %esto no funciona cuando se usa babel
+\AtBeginDocument{%
+	\renewcommand\tablename{Tabla}
+}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{30pt}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\fancyhead[L]{\raisebox{-0.2\height}{\includegraphics[width=3cm]{img/logo_episunsa.png}}}
+\fancyhead[C]{\fontsize{7}{7}\selectfont	\itemUniversity \\ \itemFaculty \\ \itemDepartment \\ \itemSchool \\ \textbf{\itemCourse}}
+\fancyhead[R]{\raisebox{-0.2\height}{\includegraphics[width=1.2cm]{img/logo_abet}}}
+\fancyfoot[L]{Estudiante Ryan Valdivia}
+\fancyfoot[C]{\itemCourse}
+\fancyfoot[R]{Página \thepage}
+
+% para el codigo fuente
+\usepackage{listings}
+\usepackage{color, colortbl}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{codebackground}{rgb}{0.95, 0.95, 0.92}
+\definecolor{tablebackground}{rgb}{0.8, 0, 0}
+
+\lstset{frame=tb,
+	language=bash,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3,
+	backgroundcolor= \color{codebackground},
+}
+
+\begin{document}
+	
+	\vspace*{10px}
+	
+	\begin{center}	
+		\fontsize{17}{17} \textbf{ Informe de Laboratorio \itemPracticeNumber}
+	\end{center}
+	\centerline{\textbf{\Large Tema: \itemTheme}}
+	%\vspace*{0.5cm}	
+
+	\begin{flushright}
+		\begin{tabular}{|M{2.5cm}|N|}
+			\hline 
+			\rowcolor{tablebackground}
+			\color{white} \textbf{Nota}  \\
+			\hline 
+			     \\[30pt]
+			\hline 			
+		\end{tabular}
+	\end{flushright}	
+
+	\begin{table}[H]
+		\begin{tabular}{|x{4.7cm}|x{4.8cm}|x{4.8cm}|}
+			\hline 
+			\rowcolor{tablebackground}
+			\color{white} \textbf{Estudiante} & \color{white}\textbf{Escuela}  & \color{white}\textbf{Asignatura}   \\
+			\hline 
+			{\itemStudent \par \itemEmail} & \itemSchool & {\itemCourse \par Semestre: \itemSemester \par Código: \itemCourseCode}     \\
+			\hline 			
+		\end{tabular}
+	\end{table}		
+	
+	\begin{table}[H]
+		\begin{tabular}{|x{4.7cm}|x{4.8cm}|x{4.8cm}|}
+			\hline 
+			\rowcolor{tablebackground}
+			\color{white}\textbf{Laboratorio} & \color{white}\textbf{Tema}  & \color{white}\textbf{Duración}   \\
+			\hline 
+			\itemPracticeNumber & \itemTheme & 04 horas   \\
+			\hline 
+		\end{tabular}
+	\end{table}
+	
+	\begin{table}[H]
+		\begin{tabular}{|x{4.7cm}|x{4.8cm}|x{4.8cm}|}
+			\hline 
+			\rowcolor{tablebackground}
+			\color{white}\textbf{Semestre académico} & \color{white}\textbf{Fecha de inicio}  & \color{white}\textbf{Fecha de entrega}   \\
+			\hline 
+			\itemAcademic & \itemInput &  \itemOutput  \\
+			\hline 
+		\end{tabular}
+	\end{table}
+	
+	\section{Tarea}
+	\begin{itemize}
+		\subsection{Actividad 1}
+			\item Escribir un programa donde se creen 5 soldados considerando sólo su nombre. Ingresar sus datos y
+después mostrarlos.
+			\item Restricción: se realizará considerando sólo los conocimientos que se tienen de FP1 y sin utilizar arreglos estándar,
+sólo usar variables simples.
+		\subsection{Actividad 2}
+			\item Escribir un programa donde se creen 5 soldados considerando su nombre y nivel de vida. Ingresar sus datos y después mostrarlos.
+			\item Restricción: se realizará considerando sólo los conocimientos que se tienen de FP1 y sin utilizar arreglos estándar,
+sólo usar variables simples.
+		\subsection{Actividad 3}
+			\item Escribir un programa donde se creen 5 soldados considerando su nombre y nivel de vida. Ingresar sus datos y después mostrarlos.
+			\item Restricción: aplicar arreglos estándar.
+		\subsection{Actividad 4}
+			\item Escribir un programa donde se creen 5 soldados considerando su nombre y nivel de vida. Ingresar sus datos y después mostrarlos.
+			\item Restricción: aplicar arreglos estándar.
+		\subsection{Actividad 5}
+			\item Escribir un programa donde se creen 2 ejércitos, cada uno con un número aleatorio de soldados entre
+1 y 5, considerando sólo su nombre. Sus datos se inicializan automáticamente con nombres tales como “Soldado0”,
+“Soldado1”, etc. Luego de crear los 2 ejércitos se deben mostrar los datos de todos los soldados de ambos ejércitos
+e indicar qué ejército fue el ganador.
+			\item Restricción: aplicar arreglos estándar y métodos para inicializar los ejércitos, mostrar ejército y mostrar ejército
+ganador. La métrica a aplicar para indicar el ganador es el mayor número de soldados de cada ejército, puede
+haber empates. (Todavía no aplicar arreglo de objetos)
+	\end{itemize}
+		
+	\section{Equipos, materiales y temas utilizados}
+	\begin{itemize}
+		\item Sistema Operativo Windows 11 Home Single Language 64 bits 22621.2283
+		\item VIM 9.0.
+		\item Visual Studio Code 64 bits 1.82.2
+		\item OpenJDK 64-Bits 11.0.16.1
+		\item Git 2.41.0.windows.1
+		\item Cuenta en GitHub con el correo institucional. 
+	\end{itemize}
+	
+	\section{URL de Repositorio Github}
+	\begin{itemize}
+		\item URL del Repositorio GitHub para clonar o recuperar.
+		\item \url{https://github.com/RyanValdivia/fp2-23b.git}
+		\item URL para el laboratorio 01 en el Repositorio GitHub.
+		\item \url{https://github.com/RyanValdivia/fp2-23b/tree/main/fase01/lab01}
+	\end{itemize}
+	
+	\section{Actividades}
+	
+	\subsection{Actividad 1}
+	\begin{itemize}	
+		\item Se realizó un commit con la versión final del código de la Actividad 1  
+	\end{itemize}	
+	\begin{lstlisting}[language=bash,caption={Comentando la versión final de esta actividad}][H]
+		$ git log VideoJuego.java
+		commit c161ae0edeee853c558913d952eaaa2320b2ae0a
+		Author: RYAN VALDIVIA <rvaldiviase@unsa.edu.pe>
+		Date:   Fri Sep 15 09:20:15 2023 -0500
+			Actividad 1: Creando un programa que cree 5 soldados, ingrese sus nombres y luego los muestre
+	\end{lstlisting}
+	\begin{itemize}	
+		\item Conteniendo el siguiente código:  
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Los 5 soldados}, numbers=left][H]
+	import java.util.*;
+
+	public class VideoJuego {
+    		public static void main(String[] args) {
+    			Scanner sc = new Scanner(System.in);
+
+        		System.out.println("Ingrese los nombres de los soldados: ");
+        		String sold1 = sc.next();
+       		String sold2 = sc.next();
+        		String sold3 = sc.next();
+        		String sold4 = sc.next();
+        		String sold5 = sc.next();
+
+        		System.out.println("Soldado 1: " + sold1);
+        		System.out.println("Soldado 2: " + sold2);
+        		System.out.println("Soldado 3: " + sold3);
+        		System.out.println("Soldado 4: " + sold4);
+        		System.out.println("Soldado 5: " + sold5);
+
+        		sc.close();
+    }
+}
+	\end{lstlisting}
+	\begin{itemize}	
+		\item Debido a la restricción de no usar arreglos, declaré cinco variables para contener a los nombres de los cinco soldados, para posteriormente mostrarlos en consola.
+	\end{itemize}
+	\begin{lstlisting}[language=bash,caption={Compilación y ejecución del programa}][H]
+		$ javac VideoJuego.java
+		$ java VideoJuego
+		Ingrese los nombres de los soldados:
+		Juan Carlos Pepe Marco Antonio
+		Soldado 1: Juan
+		Soldado 2: Carlos
+		Soldado 3: Pepe
+		Soldado 4: Marco
+		Soldado 5: Antonio
+	\end{lstlisting}
+	
+	\subsection{Actividad 2}
+	\begin{itemize}
+		\item Ahora, se nos añade la tarea de almacenar los nombres y los niveles de vida de 5 soldados, sin usar arreglos.
+		\item Para esto, simplemente declaré y leí 5 variables más, que contengan los niveles de vida de los soldados para mostrarlos después
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Los 5 soldados + Los 5 niveles de vida}, numbers=left][H]
+		String sold1 = sc.next();
+        int lvl1 = sc.nextInt();
+        String sold2 = sc.next();
+        int lvl2 = sc.nextInt();
+        String sold3 = sc.next();
+        int lvl3 = sc.nextInt();
+        String sold4 = sc.next();
+        int lvl4 = sc.nextInt();
+        String sold5 = sc.next();
+        int lvl5 = sc.nextInt();
+        
+        System.out.println("Soldado 1: " + sold1 + " y su nivel de vida es: " + lvl1);
+        System.out.println("Soldado 2: " + sold2 + " y su nivel de vida es: " + lvl2);
+        System.out.println("Soldado 3: " + sold3 + " y su nivel de vida es: " + lvl3);
+        System.out.println("Soldado 4: " + sold4 + " y su nivel de vida es: " + lvl4);
+        System.out.println("Soldado 5: " + sold5 + " y su nivel de vida es: " + lvl5);
+        
+	\end{lstlisting}
+	\begin{lstlisting}[language=bash,caption={Ejecutando y nombrando soldados}][H]
+		$ javac VideoJuego.java
+		$ java VideoJuego
+		Ingrese los nombres de los soldados y su respectivo nivel de vida:
+		Juan 12 Carlos 16 Pepe 09 Marco 11 Antonio 10
+		Soldado 1: Juan y su nivel de vida es: 12
+		Soldado 2: Carlos y su nivel de vida es: 16
+		Soldado 3: Pepe y su nivel de vida es: 9
+		Soldado 4: Marco y su nivel de vida es: 11
+		Soldado 5: Antonio y su nivel de vida es: 10
+	\end{lstlisting}
+	\subsection{Actividad 3}
+	\begin{itemize}
+		\item Para este ejercicio, ya tenemos "desbloqueada" la utilización de arreglos estándar, esto facilitará mucho la tarea de almacenar los valores.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Los 5 soldados, pero con arreglos}, numbers=left][H]
+		import java.util.*;
+		public class VideoJuego {
+    			public static void main(String[] args) {
+        			Scanner sc = new Scanner(System.in);
+        			System.out.println("Ingrese los nombres de los soldados");
+        			String[] soldiers = new String[5];
+
+        			for (int i = 0; i < 5; i++) {
+            			soldiers[i] = sc.next();
+        			}
+        			for (int i = 0; i < 5; i++) {
+            		System.out.println("Soldado " + i + ": " + soldiers[i]);
+        			}
+        			sc.close();
+    }
+}
+	\end{lstlisting}
+	\begin{itemize}
+		\item La lógica para este código, fue declarar un arreglo de Strings para contener los nombres de los soldados, y hacer un ciclo for para llenarlo.
+		\item Posteriormente, usé un ciclo for para imprimir en consola los datos previamente almacenados.
+	\end{itemize}
+	\begin{lstlisting}[language=bash,caption={Probando con arreglos}][H]
+		$ javac VideoJuego.java
+		$ java VideoJuego
+		Ingrese los nombres de los soldados:
+		Juan Carlos Pepe Marco Antonio
+		Soldado 0: Juan
+		Soldado 1: Carlos
+		Soldado 2: Pepe
+		Soldado 3: Marco
+		Soldado 4: Antonio
+	\end{lstlisting}
+	\begin{itemize}
+		\item Es el mismo resultado, pero programado de una forma más práctica.
+	\end{itemize}
+	\subsection{Actividad 4}
+	\begin{itemize}
+		\item En esta actividad, la lógica es la misma, solo creando dos arreglos para contener los nombres y los niveles de vida de los soldados. 
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Usando arreglos para los niveles de vida y nombres}, numbers=left][H]
+		import java.util.*;
+
+		public class VideoJuego {
+    			public static void main(String[] args) {
+        			Scanner sc = new Scanner(System.in);
+
+        			System.out.println("Ingrese los nombres de los soldados y sus respectivos niveles de vida");
+
+        			String[] soldiers = new String[5];
+        			int[] levels = new int[5];
+
+        			for (int i = 0; i < 5; i++) {
+            			soldiers[i] = sc.next();
+            			levels[i] = sc.nextInt();
+        			}
+
+        			for (int i = 0; i < 5; i++) {
+            			System.out.println("Soldado " + i + ": " + soldiers[i] + " y su nivel de vida es: " + levels[i]);
+        			}
+
+        			sc.close();
+    }
+}
+	\end{lstlisting}
+	\subsection{Actividad 5}
+	\begin{itemize}
+		\item Esta actividad ocupa algo más elaborado, realizando múltiples métodos para hacer la tarea más sencilla.
+		\item Primero, creé un método que llene un arreglo de strings con "Soldado" + su respectivo número, dependiendo de su longitud, usando un ciclo for.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Método para inicializar los arreglos de soldados}, numbers=left][H]
+		public static void init(String[] strs) {
+        		for (int i = 0; i < strs.length; i++) {
+            		strs[i] = "Soldado" + i;
+        		}
+    		}
+	\end{lstlisting}
+	\begin{itemize}
+		\item Posteriormente, creé otro método que, dados dos ejércitos, determine cual es el ganador, basándose en la mayor cantidad de soldados.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Método para declarar al ganador}, numbers=left][H]
+		public static void win(int l1, int l2) {
+        		if (l1 > l2) {
+            		System.out.println("El ejercito 1 es ganador");
+        		} else if (l1 == l2) {
+            		System.out.println("Hay empate");
+        		} else {
+            		System.out.println("El ejercito 2 es ganador");
+        		}
+    		}		
+	\end{lstlisting}	
+	\begin{itemize}
+		\item Además, implementé un método para imprimir ambos ejércitos una vez creados.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Método para imprimir ambos arreglos(ejércitos)}, numbers=left][H]
+		public static void mostrar(String[] strs1, String[] strs2) {
+        		System.out.println("Ejercito 1: ");
+        		for (String s : strs1) {
+            		System.out.println(s);
+        		}
+        		System.out.println();
+
+        		System.out.println("Ejercito 2: ");
+        		for (String s : strs2) {
+            		System.out.println(s);
+        		}
+        		System.out.println();
+    		}	
+	\end{lstlisting}
+	\begin{itemize}
+		\item Finalmente, solo quedaba armar todo en el método main, obteniendo dos tamaños de ejército aleatorios y declarando los dos arreglos que contendrán a los ejércitos.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Código final armado}, numbers=left][H]
+		public static void main(String[] args) {
+        		int len1 = (int) (Math.random() * 5 + 1);
+        		int len2 = (int) (Math.random() * 5 + 1);
+        		String[] army1 = new String[len1];
+        		String[] army2 = new String[len2];
+        		init(army1);
+        		init(army2);
+        		mostrar(army1, army2);
+        		win(len1, len2);
+    		}
+	\end{lstlisting}
+	\begin{lstlisting}[language=bash,caption={Ejecutando el Video juego}][H]
+		$ javac VideoJuego.java
+		$ java VideoJuego
+		Ejercito 1:
+		Soldado0
+		Soldado1
+		Soldado2
+		Soldado3
+		Soldado4
+
+		Ejercito 2:
+		Soldado0
+		Soldado1
+		Soldado2
+		Soldado3
+		Soldado4
+
+		Hay empate
+	\end{lstlisting}
+	\begin{lstlisting}[language=bash,caption={Probando de nuevo, debería ser aleatorio}][H]
+		$ javac VideoJuego.java
+		$ java VideoJuego
+		Ejercito 1:
+		Soldado0
+		Soldado1
+		Soldado2
+
+		Ejercito 2:
+		Soldado0
+		Soldado1
+		Soldado2
+		Soldado3
+
+		El Ejercito 2 es ganador
+	\end{lstlisting}
+	\section{\textcolor{red}{Rúbricas}}
+	
+	\subsection{\textcolor{red}{Entregable Informe}}
+	\begin{table}[H]
+		\caption{Tipo de Informe}
+		\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+		{\renewcommand{\arraystretch}{1.5}% for the vertical padding
+		\begin{tabular}{|p{3cm}|p{12cm}|}
+			\hline
+			\multicolumn{2}{|c|}{\textbf{\textcolor{red}{Informe}}}  \\
+			\hline 
+			\textbf{\textcolor{red}{Latex}} & \textcolor{blue}{El informe está en formato PDF desde Latex,  con un formato limpio (buena presentación) y facil de leer.}   \\ 
+			\hline 
+			
+			
+		\end{tabular}
+	}
+	\end{table}
+	
+	\clearpage
+	
+	\subsection{\textcolor{red}{Rúbrica para el contenido del Informe y demostración}}
+	\begin{itemize}			
+		\item El alumno debe marcar o dejar en blanco en celdas de la columna \textbf{Checklist} si cumplio con el ítem correspondiente.
+		\item Si un alumno supera la fecha de entrega,  su calificación será sobre la nota mínima aprobada, siempre y cuando cumpla con todos lo items.
+		\item El alumno debe autocalificarse en la columna \textbf{Estudiante} de acuerdo a la siguiente tabla:
+	
+		\begin{table}[ht]
+			\caption{Niveles de desempeño}
+			\begin{center}
+			\begin{tabular}{ccccc}
+    			\hline
+    			 & \multicolumn{4}{c}{Nivel}\\
+    			\cline{1-5}
+    			\textbf{Puntos} & Insatisfactorio 25\%& En Proceso 50\% & Satisfactorio 75\% & Sobresaliente 100\%\\
+    			\textbf{2.0}&0.5&1.0&1.5&2.0\\
+    			\textbf{4.0}&1.0&2.0&3.0&4.0\\
+    		\hline
+			\end{tabular}
+		\end{center}
+	\end{table}	
+	
+	\end{itemize}
+	
+	\begin{table}[H]
+		\caption{Rúbrica para contenido del Informe y demostración}
+		\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+		{\renewcommand{\arraystretch}{1.5}% for the vertical padding
+		%\begin{center}
+		\begin{tabular}{|p{2.7cm}|p{7cm}|x{1.3cm}|p{1.2cm}|p{1.5cm}|p{1.1cm}|}
+			\hline
+    		\multicolumn{2}{|c|}{Contenido y demostración} & Puntos & Checklist & Estudiante & Profesor\\
+			\hline
+			\textbf{1. GitHub} & Hay enlace URL activo del directorio para el  laboratorio hacia su repositorio GitHub con código fuente terminado y fácil de revisar. &2 &X &2 & \\ 
+			\hline
+			\textbf{2. Commits} &  Hay capturas de pantalla de los commits más importantes con sus explicaciones detalladas. (El profesor puede preguntar para refrendar calificación). &4 &X &2 & \\ 
+			\hline 
+			\textbf{3. Código fuente} &  Hay porciones de código fuente importantes con numeración y explicaciones detalladas de sus funciones. &2 &X &2 & \\ 
+			\hline 
+			\textbf{4. Ejecución} & Se incluyen ejecuciones/pruebas del código fuente  explicadas gradualmente. &2 &X &2 & \\ 
+			\hline			
+			\textbf{5. Pregunta} & Se responde con completitud a la pregunta formulada en la tarea.  (El profesor puede preguntar para refrendar calificación).  &2 &X &2 & \\ 
+			\hline	
+			\textbf{6. Fechas} & Las fechas de modificación del código fuente estan dentro de los plazos de fecha de entrega establecidos. &2 &X &2 & \\ 
+			\hline 
+			\textbf{7. Ortografía} & El documento no muestra errores ortográficos. &2 &X &2 & \\ 
+			\hline 
+			\textbf{8. Madurez} & El Informe muestra de manera general una evolución de la madurez del código fuente,  explicaciones puntuales pero precisas y un acabado impecable.   (El profesor puede preguntar para refrendar calificación).  &4 &X &3 & \\ 
+			\hline
+			\multicolumn{2}{|c|}{\textbf{Total}} &20 & &17 & \\ 
+			\hline
+		\end{tabular}
+		%\end{center}
+		%\label{tab:multicol}
+		}
+	\end{table}
+	
+\clearpage
+
+\section{Referencias}
+	
+%\clearpage
+%\bibliographystyle{apalike}
+%\bibliographystyle{IEEEtranN}
+%\bibliography{bibliography}
+			
+\end{document}
