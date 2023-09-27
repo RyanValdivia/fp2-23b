@@ -51,5 +51,8 @@ public class Nave {
         return puntos;
 
     }
+
     // Completar con otros métodos necesarios
+    public Nave() {
+    }
 }
