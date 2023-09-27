@@ -53,6 +53,4 @@ public class Nave {
     }
 
     // Completar con otros métodos necesarios
-    public Nave() {
-    }
 }
