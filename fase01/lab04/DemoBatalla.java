@@ -32,6 +32,24 @@ public class DemoBatalla {
         mostrarPorPuntos(misNaves);
         System.out.println("\nNave con mayor numero de puntos: " + mostrarMayorPuntos(misNaves).getNombre());
         mostrarNaves(desordenar(misNaves));
+
+        int pos = busquedaLinealNombre(misNaves, nombre);
+        ordenarPorPuntosBurbuja(misNaves);
+        mostrarNaves(misNaves);
+        ordenarPorNombreBurbuja(misNaves);
+        mostrarNaves(misNaves);
+        // mostrar los datos de la nave con dicho nombre, mensaje de “no encontrado” en
+        // caso contrario
+        pos = busquedaBinariaNombre(misNaves, nombre);
+        ordenarPorPuntosSeleccion(misNaves);
+        mostrarNaves(misNaves);
+        ordenarPorPuntosInsercion(misNaves);
+        mostrarNaves(misNaves);
+        ordenarPorNombreSeleccion(misNaves);
+        mostrarNaves(misNaves);
+        ordenarPorNombreInsercion(misNaves);
+        mostrarNaves(misNaves);
+
     }
 
     // Método para mostrar todas las naves
@@ -135,5 +153,37 @@ public class DemoBatalla {
             }
         }
         return false;
+    }
+
+    // Método para buscar la primera nave con un nombre que se pidió por teclado
+    public static int busquedaLinealNombre(Nave[] flota, String s) {
+    }
+
+    // Método que ordena por número de puntos de menor a mayor
+    public static void ordenarPorPuntosBurbuja(Nave[] flota) {
+    }
+
+    // Método que ordena por nombre de A a Z
+    public static void ordenarPorNombreBurbuja(Nave[] flota) {
+    }
+
+    // Método para buscar la primera nave con un nombre que se pidió por teclado
+    public static int busquedaBinariaNombre(Nave[] flota, String s) {
+    }
+
+    // Método que ordena por número de puntos de menor a mayor
+    public static void ordenarPorPuntosSeleccion(Nave[] flota) {
+    }
+
+    // Método que ordena por nombre de A a Z
+    public static void ordenarPorNombreSeleccion(Nave[] flota) {
+    }
+
+    // Método que muestra las naves ordenadas por número de puntos de mayor a menor
+    public static void ordenarPorPuntosInsercion(Nave[] flota) {
+    }
+
+    // Método que muestra las naves ordenadas por nombre de Z a A
+    public static void ordenarPorNombreInsercion(Nave[] flota) {
     }
 }
