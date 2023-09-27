@@ -9,15 +9,15 @@ public class DemoBatalla {
         boolean est;
         for (int i = 0; i < misNaves.length; i++) {
             System.out.println("Nave " + (i + 1));
-            System.out.print("Nombre: ");
+            System.out.println("Nombre: ");
             nomb = sc.next();
             System.out.println("Fila ");
             fil = sc.nextInt();
-            System.out.print("Columna: ");
+            System.out.println("Columna: ");
             col = sc.next();
-            System.out.print("Estado: ");
+            System.out.println("Estado: ");
             est = sc.nextBoolean();
-            System.out.print("Puntos: ");
+            System.out.println("Puntos: ");
             punt = sc.nextInt();
             misNaves[i] = new Nave(); // Se crea un objeto Nave y se asigna su referencia a misNaves
             misNaves[i].setNombre(nomb);
@@ -30,7 +30,7 @@ public class DemoBatalla {
         mostrarNaves(misNaves);
         mostrarPorNombre(misNaves);
         mostrarPorPuntos(misNaves);
-        System.out.println("\nNave con mayor número de puntos: " + mostrarMayorPuntos(misNaves).getNombre());
+        System.out.println("\nNave con mayor numero de puntos: " + mostrarMayorPuntos(misNaves).getNombre());
         mostrarNaves(desordenar(misNaves));
     }
 
@@ -39,7 +39,7 @@ public class DemoBatalla {
         int i = 1;
         for (Nave n : flota) {
             System.out.println("Nave " + i + ":" + n.getNombre());
-            System.out.println("Posición: " + n.getFila() + n.getColumna());
+            System.out.println("Posicion: " + n.getFila() + n.getColumna());
             System.out.println("Puntos: " + n.getPuntos());
             if (n.getEstado()) {
                 System.out.println("Sigue con vida");
@@ -59,7 +59,7 @@ public class DemoBatalla {
             if (flota[i].getNombre().equals(nombre)) {
                 Nave n = flota[i];
                 System.out.println(n.getNombre());
-                System.out.println("Posición: " + n.getFila() + n.getColumna());
+                System.out.println("Posicion: " + n.getFila() + n.getColumna());
                 System.out.println("Puntos: " + n.getPuntos());
                 if (n.getEstado()) {
                     System.out.println("Sigue con vida");
@@ -79,7 +79,7 @@ public class DemoBatalla {
             if (flota[i].getPuntos() <= puntos) {
                 Nave n = flota[i];
                 System.out.println("Nave " + i + ":" + n.getNombre());
-                System.out.println("Posición: " + n.getFila() + n.getColumna());
+                System.out.println("Posicion: " + n.getFila() + n.getColumna());
                 System.out.println("Puntos: " + n.getPuntos());
                 if (n.getEstado()) {
                     System.out.println("Sigue con vida");
