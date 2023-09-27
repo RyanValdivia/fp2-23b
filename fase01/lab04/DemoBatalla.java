@@ -222,18 +222,65 @@ public class DemoBatalla {
 
     // Método que ordena por número de puntos de menor a mayor
     public static void ordenarPorPuntosSeleccion(Nave[] flota) {
+        for (int i = 0; i < flota.length - 1; i++) {
+            int menor = flota[i].getPuntos();
+            int indice = i;
+            for (int j = i + 1; j < flota.length; j++) {
+                if (flota[j].getPuntos() < menor) {
+                    menor = flota[j].getPuntos();
+                    indice = j;
+                }
+            }
+            if (indice != i) {
+                Nave pivot = flota[i];
+                flota[i] = flota[indice];
+                flota[indice] = pivot;
+            }
+        }
     }
 
     // Método que ordena por nombre de A a Z
     public static void ordenarPorNombreSeleccion(Nave[] flota) {
+        for (int i = 0; i < flota.length - 1; i++) {
+            String menor = flota[i].getNombre();
+            int indice = i;
+            for (int j = i + 1; j < flota.length; j++) {
+                if (flota[i].getNombre().compareTo(menor) < 0) {
+                    menor = flota[j].getNombre();
+                    indice = j;
+                }
+            }
+            if (indice != i) {
+                Nave pivot = flota[i];
+                flota[i] = flota[indice];
+                flota[indice] = pivot;
+            }
+        }
     }
 
     // Método que muestra las naves ordenadas por número de puntos de mayor a menor
     public static void ordenarPorPuntosInsercion(Nave[] flota) {
+        for (int i = 1; i < flota.length; i++) {
+            Nave valor = flota[i];
+            int j = i;
+            for (j = i; 0 < j && flota[j - 1].getPuntos() > valor.getPuntos(); j--) {
+                flota[j] = flota[j - 1];
+            }
+            flota[j] = valor;
+        }
+
     }
 
     // Método que muestra las naves ordenadas por nombre de Z a A
     public static void ordenarPorNombreInsercion(Nave[] flota) {
+        for (int i = 1; i < flota.length; i++) {
+            Nave valor = flota[i];
+            int j = i;
+            for (j = i; 0 < j && flota[j - 1].getNombre().compareTo(valor.getNombre()) < 0; j--) {
+                flota[j] = flota[j - 1];
+            }
+            flota[j] = valor;
+        }
     }
 
     public static void intercambiar(Nave[] flota, int i, int j) {
