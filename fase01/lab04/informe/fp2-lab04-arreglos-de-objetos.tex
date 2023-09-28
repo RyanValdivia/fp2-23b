@@ -49,8 +49,8 @@
 \newcommand{\itemAcademic}{2023 - B}
 \newcommand{\itemInput}{Del 18 Septiembre 2023}
 \newcommand{\itemOutput}{Al 24 Septiembre 2023}
-\newcommand{\itemPracticeNumber}{03}
-\newcommand{\itemTheme}{Arreglos de objetos}
+\newcommand{\itemPracticeNumber}{04}
+\newcommand{\itemTheme}{Arreglos de objetos, Búsqueda y Algoritmos de ordenamiento}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -160,12 +160,8 @@
 	
 	\section{Tarea}
 	\begin{itemize}
-		\subsection{Actividad 1: Demo Batalla}
+		\subsection{Actividad: Demo Batalla}
 			\item Analice, complete y pruebe el Código de la clase DemoBatalla.
-		\subsection{Actividad 2}
-			\item Solucionar la Actividad 4 de la Práctica 1 pero usando arreglo de objetos.
-		\subsection{Actividad 3}
-			\item Solucionar la Actividad 5 de la Práctica 1 pero usando arreglos de objetos.
 	\end{itemize}
 		
 	\section{Equipos, materiales y temas utilizados}
@@ -183,460 +179,256 @@
 	\begin{itemize}
 		\item URL del Repositorio GitHub para clonar o recuperar.
 		\item \url{https://github.com/RyanValdivia/fp2-23b.git}
-		\item URL para el laboratorio 03 en el Repositorio GitHub.
-		\item \url{https://github.com/RyanValdivia/fp2-23b/tree/main/fase01/lab03}
+		\item URL para el laboratorio 04 en el Repositorio GitHub.
+		\item \url{https://github.com/RyanValdivia/fp2-23b/tree/main/fase01/lab04}
 	\end{itemize}
 	
 	\section{Actividades}
 	\subsection{Actividad 1}
 	
 	\begin{itemize}	
-		\item Realicé un commit copiando el código parcial que nos proporcionó el profesor.
+		\item Realicé un commit reutilizando el código ya hecho del laboratorio anterior.
 	\end{itemize}	
-	\begin{lstlisting}[language=bash,caption={Comentando el código paricial}][H]
+	\begin{lstlisting}[language=bash,caption={Comentando el código parcial}][H]
 		$ git log Ahorcado.java
-		commit b1ca8e2e60d9546da50d357333768c59ebeb0135
+		commit d44ccee0c41e9bfcd80323582d0cea9defa7667b
 		Author: RYAN VALDIVIA <rvaldiviase@unsa.edu.pe>
-		Date:   Sun Sep 24 14:36:27 2023 -0500
-			Actividad 1: Copiando el codigo parcial que nos dio el profesor
+		Date:   Wed Sep 27 16:18:18 2023 -0500
+			Reutilizando el codigo del laboratorio anterior
 	\end{lstlisting}
-	\begin{lstlisting}[language=java,caption={Código parcial de DemoBatalla}, numbers=left][H]
-import java.util.*;
-
-public class DemoBatalla {
-    public static void main(String[] args) {
-        Nave[] misNaves = new Nave[10];
-        Scanner sc = new Scanner(System.in);
-        String nomb, col;
-        int fil, punt;
-        boolean est;
-        for (int i = 0; i < misNaves.length; i++) {
-            System.out.println("Nave " + (i + 1));
-            System.out.println("Nombre: ");
-            nomb = sc.next();
-            System.out.println("Fila ");
-            fil = sc.nextInt();
-            System.out.println("Columna: ");
-            col = sc.next();
-            System.out.println("Estado: ");
-            est = sc.nextBoolean();
-            System.out.println("Puntos: ");
-            punt = sc.nextInt();
-            misNaves[i] = new Nave(); // Se crea un objeto Nave y se asigna su referencia a misNaves
-            misNaves[i].setNombre(nomb);
-            misNaves[i].setFila(fil);
-            misNaves[i].setColumna(col);
-            misNaves[i].setEstado(est);
-            misNaves[i].setPuntos(punt);
+	\begin{itemize}	
+		\item Lo primero que hice fue elaborar el método para intercambiar los valores en el arreglo, algo muy utilizado en los métodos de ordenamiento.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Intercambio}, numbers=left][H]
+	public static void intercambiar(Nave[] flota, int i, int j) {
+        Nave temp;
+        temp = flota[i];
+        flota[i] = flota[j];
+        flota[j] = temp;
+    }
+	\end{lstlisting}
+	\begin{itemize}	
+		\item Seguidamente, comencé elaborando los métodos de ordenamiento, ya que para realizar búsqueda binaria en un arreglo, debe estar ordenado.
+		\item Comencé con el ordenamiento por burbuja, realizando sus dos variantes, uno para datos enteros (el puntaje de las naves) y otro para Strings (los nombres).
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Ordenamiento por burbuja: Enteros}, numbers=left][H]
+	public static void ordenarPorPuntosBurbuja(Nave[] flota) {
+        for (int i = 0; i < flota.length; i++) {
+            for (int j = 0; j < flota.length - 1; j++) {
+                if (flota[j].getPuntos() > flota[j + 1].getPuntos()) {
+                    intercambiar(flota, j, j + 1);
+                }
+            }
         }
-        System.out.println("\nNaves creadas:");
-        mostrarNaves(misNaves);
-        mostrarPorNombre(misNaves);
-        mostrarPorPuntos(misNaves);
-        System.out.println("\nNave con mayor numero de puntos: " + mostrarMayorPuntos(misNaves));
     }
-
-    // Metodo para mostrar todas las naves
-    public static void mostrarNaves(Nave[] flota) {
-    }
-
-    // Metodo para mostrar todas las naves de un nombre que se pide por teclado
-    public static void mostrarPorNombre(Nave[] flota) {
-    }
-
-    // Metodo para mostrar todas las naves con un numero de puntos inferior o igual
-    // al numero de puntos que se pide por teclado
-    public static void mostrarPorPuntos(Nave[] flota) {
-    }
-
-    // Metodo que devuelve la Nave con mayor numero de Puntos
-    public static Nave mostrarMayorPuntos(Nave[] flota) {
-    }
-    // Crear un metodo que devuelva un nuevo arreglo de objetos con todos los
-    // objetos previamente ingresados
-    // pero aleatoriamente desordenados
-}
 	\end{lstlisting}
 	\begin{itemize}	
-		\item También tenemos el código de la clase auxiliar Nave. 
+		\item En este algoritmo se intercambian valores de dos en dos para ordenar el arreglo.
+		\item Este es un método conocido para ordenar, la variante se presenta con las cadenas o strings, donde en lugar de ir comparando los valores, uso el método compareTo() para ir comparando sus valores alfabéticos e irlos ordenando.
 	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Clase Nave}, numbers=left][H]
-public class Nave {
-    private String nombre;
-    private int fila;
-    private String columna;
-    private boolean estado;
-    private int puntos;
-
-    // Metodos mutadores
-    public void setNombre(String n) {
-        nombre = n;
+	\begin{lstlisting}[language=java,caption={Ordenamiento por burbuja: Cadenas}, numbers=left][H]
+	public static void ordenarPorNombreBurbuja(Nave[] flota) {
+        for (int i = 0; i < flota.length; i++) {
+            for (int j = 0; j < flota.length - 1; j++) {
+                if (flota[j].getNombre().compareTo(flota[j + 1].getNombre()) > 0) {
+                    intercambiar(flota, j, j + 1);
+                }
+            }
+        }
     }
-
-    public void setFila(int f) {
-        fila = f;
-    }
-
-    public void setColumna(String c) {
-        columna = c;
-    }
-
-    public void setEstado(boolean e) {
-        estado = e;
-    }
-
-    public void setPuntos(int p) {
-        puntos = p;
-    }
-
-    // Metodos accesores
-    public String getNombre() {
-        return nombre;
-
-    }
-
-    public int getFila() {
-        return fila;
-
-    }
-
-    public String getColumna() {
-        return columna;
-
-    }
-
-    public boolean getEstado() {
-        return estado;
-
-    }
-
-    public int getPuntos() {
-        return puntos;
-
-    }
-    // Completar con otros metodos necesarios
-}
 	\end{lstlisting}
 	\begin{itemize}	
-		\item Lo primero que hice fue elaborar el método de mostrarNaves, haciendo que simplemente se impriman todas las naves del arreglo junto con sus respectivos atributos, usando un ciclo for each para recorrer el arreglo.
+		\item Una vez que ya tenía hecho un par de métodos de ordenamiento, procedí a la búsqueda binaria. La realicé para buscar un nombre dentro de una lista ordenada.
 	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Mostrar naves}, numbers=left][H]
-	public static void mostrarNaves(Nave[] flota) {
-        int i = 1;
-        for (Nave n : flota) {
-            System.out.println("Nave " + i + ":" + n.getNombre());
+	\begin{lstlisting}[language=java,caption={Búsqueda binaria: Cadenas}, numbers=left][H]
+	public static int busquedaBinariaNombre(Nave[] flota, String s) {
+        int baja = 0, media, alta = flota.length - 1;
+        while (baja <= alta) {
+            media = (alta + baja) / 2;
+            String nMedio = flota[media].getNombre();
+            int compare = s.compareTo(nMedio);
+            if (compare == 0) {
+                return media;
+            } else if (compare < 0) {
+                alta = media - 1;
+            } else {
+                baja = media + 1;
+            }
+        }
+        return -1;
+    }
+	\end{lstlisting}	
+	\begin{itemize}	
+		\item Además, cree un método para la búsqueda lineal en un arreglo (No necesita estar ordenado).
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Método para obtener números desordenados}, numbers=left][H]
+	 public static int busquedaLinealNombre(Nave[] flota, String s) {
+        for (int i = 0; i < flota.length; i++) {
+            if (flota[i].getNombre().equals(s)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+	\end{lstlisting}
+	\begin{itemize}	
+		\item Asímismo, creé el resto de métodos de ordenamiento, como el de selección.
+		\item Realicé dos variantes, una para la búsqueda de valores enteros (Puntaje) y para cadenas (Nombres) utilizando compareTo de nuevo para obtener el menor valor alfabético del arreglo.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Ordenamiento por selección: Enteros}, numbers=left][H]
+	 public static void ordenarPorPuntosSeleccion(Nave[] flota) {
+        for (int i = 0; i < flota.length - 1; i++) {
+            int menor = flota[i].getPuntos();
+            int indice = i;
+            for (int j = i + 1; j < flota.length; j++) {
+                if (flota[j].getPuntos() < menor) {
+                    menor = flota[j].getPuntos();
+                    indice = j;
+                }
+            }
+            if (indice != i) {
+                Nave pivot = flota[i];
+                flota[i] = flota[indice];
+                flota[indice] = pivot;
+            }
+        }
+    }
+	\end{lstlisting}
+	\begin{itemize}	
+		\item Para este algoritmo, se parte del primer elemento del arreglo y se selecciona el menor valor de todo el arreglo, si este es menor que nuestro valor inicial, se intercambian, y asi seguimos intercambiando hasta que la lista esté ordenada.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Ordenamiento por selección: Cadenas}, numbers=left][H]
+	 public static void ordenarPorNombreSeleccion(Nave[] flota) {
+        for (int i = 0; i < flota.length - 1; i++) {
+            String menor = flota[i].getNombre();
+            int indice = i;
+            for (int j = i + 1; j < flota.length; j++) {
+                if (flota[i].getNombre().compareTo(menor) < 0) {
+                    menor = flota[j].getNombre();
+                    indice = j;
+                }
+            }
+            if (indice != i) {
+                Nave pivot = flota[i];
+                flota[i] = flota[indice];
+                flota[indice] = pivot;
+            }
+        }
+    }
+	\end{lstlisting}
+	\begin{itemize}	
+		\item Ahora sigue los algoritmos de ordenamiento por inserción, también dos variantes. Una para números enteros (el puntaje) y otra para los nombres, sin embargo. Ahora una variación más es para ordenar los nombres de la Z a la A, en vez de al revés como he estado haciendo hasta ahora.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Ordenamiento por inserción: Enteros}, numbers=left][H]
+	 public static void ordenarPorPuntosInsercion(Nave[] flota) {
+        for (int i = 1; i < flota.length; i++) {
+            Nave valor = flota[i];
+            int j = i;
+            for (j = i; 0 < j && flota[j - 1].getPuntos() > valor.getPuntos(); j--) {
+                flota[j] = flota[j - 1];
+            }
+            flota[j] = valor;
+        }
+
+    }
+	\end{lstlisting}
+	\begin{itemize}	
+		\item La lógica es, dado una lista desordenada, se parte desde el segundo término y se compara los valores hacia la izquierda, si es mayor el valor a la izquierda, se inserta hacia esa dirección hasta que toda la lista este ordenada.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Ordenamiento por inserción: Cadenas de la Z a la A}, numbers=left][H]
+	 public static void ordenarPorNombreInsercion(Nave[] flota) {
+        for (int i = 1; i < flota.length; i++) {
+            Nave valor = flota[i];
+            int j = i;
+            for (j = i; 0 < j && flota[j - 1].getNombre().compareTo(valor.getNombre()) < 0; j--) {
+                flota[j] = flota[j - 1];
+            }
+            flota[j] = valor;
+        }
+    }
+	\end{lstlisting}
+	\begin{itemize}	
+		\item Solo que en este caso, hacemos una modificación para que los valores mayores queden a la izquierda, ya que queremos que la lista esté ordenada de la Z a la A.
+		\item Con esto ya tenemos algoritmos hechos para poder ordenar y buscar en arreglos.
+	\end{itemize}
+	\begin{lstlisting}[language=java,caption={Aplicando los métodos de búsqueda}, numbers=left][H]
+	 	int pos = busquedaLinealNombre(misNaves, nombre);
+        if (pos != -1) {
+            Nave n = misNaves[pos];
+            System.out.println("Nave " + pos + ":" + n.getNombre());
             System.out.println("Posicion: " + n.getFila() + n.getColumna());
             System.out.println("Puntos: " + n.getPuntos());
             if (n.getEstado()) {
                 System.out.println("Sigue con vida");
             } else {
-                System.out.println("Fue destruido");
+                System.out.println("Fue destruida");
             }
-            System.out.println();
-            i++;
-        }
-    }
-	\end{lstlisting}
-	\begin{itemize}	
-		\item La razón por la trabajé este método primero, fue para usarlo de base para los siguientes métodos.
-		\item Para el método de mostrarPorNombre, seguí la lógica del método anterior, con la modificación de mostrar solo las naves que coincidan con el nombre que ingrese el usuario.
-	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Mostrar por Nombre}, numbers=left][H]
-	public static void mostrarPorNombre(Nave[] flota) {
-        Scanner sc = new Scanner(System.in);
-        String nombre = sc.next();
-        for (int i = 0; i < flota.length; i++) {
-            if (flota[i].getNombre().equals(nombre)) {
-                Nave n = flota[i];
-                System.out.println(n.getNombre());
-                System.out.println("Posicion: " + n.getFila() + n.getColumna());
-                System.out.println("Puntos: " + n.getPuntos());
-                if (n.getEstado()) {
-                    System.out.println("Sigue con vida");
-                } else {
-                    System.out.println("Fue destruido");
-                }
-            }
-        }
-    }
-	\end{lstlisting}
-	\begin{itemize}	
-		\item Para el siguiente método, continué con la lógica, solo modificando el ciclo con un condicional para imprimir las naves que tengan un puntaje menor o igual al ingresado por teclado.
-	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Mostrando por puntos menores o iguales}, numbers=left][H]
-	public static void mostrarPorPuntos(Nave[] flota) {
-        Scanner sc = new Scanner(System.in);
-        int puntos = sc.nextInt();
-        for (int i = 0; i < flota.length; i++) {
-            if (flota[i].getPuntos() <= puntos) {
-                Nave n = flota[i];
-                System.out.println("Nave " + i + ":" + n.getNombre());
-                System.out.println("Posicion: " + n.getFila() + n.getColumna());
-                System.out.println("Puntos: " + n.getPuntos());
-                if (n.getEstado()) {
-                    System.out.println("Sigue con vida");
-                } else {
-                    System.out.println("Fue destruido");
-                }
-            }
-        }
-    }
-	\end{lstlisting}
-	\begin{itemize}	
-		\item El siguiente método es un algoritmo conocido y simple para saber cual es el objeto de mayor valor en un arreglo, lo usé para el método de mostrarMayorPuntos.
-	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Mostrar la nave con mayor cantidad de puntos}, numbers=left][H]
-	public static Nave mostrarMayorPuntos(Nave[] flota) {
-        int mayor = 0;
-        for (int i = 0; i < flota.length; i++) {
-            if (flota[i].getPuntos() > flota[mayor].getPuntos()) {
-                mayor = i;
-            }
-        }
-        return flota[mayor];
-    }
-	\end{lstlisting}	
-	\begin{itemize}	
-		\item Finalmente, se viene algo un poco más complicado, el método para desordenar el arreglo de naves, para hacer esto, hice dos métodos auxiliares.
-		\item En primer lugar, mi estrategia fue crear un arreglo de enteros conteniendo los numeros del 0 a la longitud del arreglo de naves (En este caso, 10), y usarlo para desordenar el arreglo.
-	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Método para obtener números desordenados}, numbers=left][H]
-	 public static int[] numerosRandom(Nave[] flota) {
-        int[] nums = new int[flota.length];
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = nums.length;
-        }
-        for (int i = 0; i < flota.length; i++) {
-            int n;
-            do {
-                n = (int) (Math.random() * flota.length);
-            } while (estaEnArreglo(nums, n, i));
-            nums[i] = n;
-        }
-        return nums;
-    }
-	\end{lstlisting}
-	\begin{itemize}	
-		\item Y para esto, necesitaba una forma de comprobar que el número aleatorio que generé no estuviera antes en el arreglo, para que no haya números repetidos, por tanto, creé el método estaEnArreglo para hacer esa comprobación.
-	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Método está en Arreglo}, numbers=left][H]
-	 public static boolean estaEnArreglo(int[] arreglo, int num, int indice) {
-        for (int i = 0; i < indice; i++) {
-            if (arreglo[i] == num) {
-                return true;
-            }
-        }
-        return false;
-    }
-	\end{lstlisting}
-	\begin{itemize}	
-		\item Con el arreglo de números aleatorios ya hecho, solo me queda armar todo para desordenar un arreglo de naves dado.
-	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Desordenar arreglo}, numbers=left][H]
-	 public static Nave[] desordenar(Nave[] flota) {
-        Nave[] desordenado = new Nave[flota.length];
-        int[] desorden = numerosRandom(flota);
-        for (int i = 0; i < desordenado.length; i++) {
-            desordenado[i] = flota[desorden[i]];
-        }
-        return desordenado;
-    }
-	\end{lstlisting}
-	\begin{itemize}	
-		\item Solo me falta añadir un par de cosas en el método main para que funcione al 100%.
-	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Método main}, numbers=left][H]
-	 System.out.println("\nNave con mayor numero de puntos: " + mostrarMayorPuntos(misNaves).getNombre());
-        mostrarNaves(desordenar(misNaves));
-	\end{lstlisting}
-	\begin{itemize}	
-		\item Con esto ya tengo el código de DemoBatalla listo para su uso.
-		\item A continuación tengo algunas capturas de la ejecución del código, usando solo cinco naves en el arreglo para no tener que introducir tantos datos.
-	\end{itemize}
-	\begin{itemize}
-		\item Llenando los datos del arreglo.
-	\end{itemize}
-
-	\begin{figure}[H]
-		\centering		\includegraphics[width=0.8\textwidth,keepaspectratio]{img/captura1.png}
-		%\includesvg{img/automata.svg}
-		%\label{img:mot2}
-		%\caption{Product backlog.}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-	\includegraphics[width=0.8\textwidth,keepaspectratio]{img/captura2.png}
-		%\includesvg{img/automata.svg}
-		%\label{img:mot2}
-		%\caption{Product backlog.}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-	\includegraphics[width=0.5\textwidth,keepaspectratio]{img/captura3.png}
-		%\includesvg{img/automata.svg}
-		%\label{img:mot2}
-		%\caption{Product backlog.}
-	\end{figure}
-	
-	\begin{itemize}
-		\item Probando el método para mostrar todas las naves.
-	\end{itemize}
-	\begin{figure}[H]
-		\centering
-	\includegraphics[width=0.8\textwidth,keepaspectratio]{img/captura4.png}
-		%\includesvg{img/automata.svg}
-		%\label{img:mot2}
-		%\caption{Product backlog.}
-	\end{figure}
-	
-	\begin{itemize}
-		\item Probando el método para búsqueda por nombre.
-	\end{itemize}
-	\begin{figure}[H]
-		\centering
-	\includegraphics[width=0.8\textwidth,keepaspectratio]{img/captura5.png}
-		%\includesvg{img/automata.svg}
-		%\label{img:mot2}
-		%\caption{Product backlog.}
-	\end{figure}
-	
-	\begin{itemize}
-		\item Probando el método para búsqueda por puntos.
-	\end{itemize}
-	\begin{figure}[H]
-		\centering
-	\includegraphics[width=0.8\textwidth,keepaspectratio]{img/captura6.png}
-		%\includesvg{img/automata.svg}
-		%\label{img:mot2}
-		%\caption{Product backlog.}
-	\end{figure}
-	
-	\begin{itemize}
-		\item Probando el método para saber la Nave con mayor puntuación.
-	\end{itemize}
-	\begin{lstlisting}[language=bash,caption={Nave con el puntaje más alto}][H]
-		Nave con mayor numero de puntos: Fire
-	\end{lstlisting}
-	
-	\begin{itemize}
-		\item Probando el método para desordenar todas las naves aleatoriamente y luego mostrarlas.
-	\end{itemize}
-	\begin{figure}[H]
-		\centering
-	\includegraphics[width=0.8\textwidth,keepaspectratio]{img/captura7.png}
-		%\includesvg{img/automata.svg}
-		%\label{img:mot2}
-		%\caption{Product backlog.}
-	\end{figure}
-	
-	\subsection{Actividad 2}
-	\begin{itemize}
-		\item Para poder trabajar con arreglos de objetos en esta actividad y la siguiente, necesito crear una clase conveniente, en este caso, creé la clase 'Soldado' con sus atributos respectivos.
-	\end{itemize}
-	
-	\begin{lstlisting}[language=java,caption={Clase Soldado}, numbers=left][H]
-public class Soldado {
-    private String nombre;
-    private int vida;
-
-    public void setNombre(String s) {
-        this.nombre = s;
-    }
-
-    public void setVida(int n) {
-        this.vida = n;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public int getVida() {
-        return vida;
-    }
-}
-	\end{lstlisting}
-	
-	\begin{itemize}
-		\item Ahora simplemente trabajé la actividad de leer los nombres y niveles de vida de cinco soldados, usando un arreglo de 'Soldados'.
-		\item Para esto, almaceno los valores como atributos de los objetos Soldado, como la vida y el nombre.
-	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Los 5 soldados}, numbers=left][H]
-import java.util.*;
-
-public class VideoJuego {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Soldado[] army = new Soldado[5];
-        for (int i = 0; i < army.length; i++) {
-            army[i] = new Soldado();
-            System.out.println("Ingrese el nombre del soldado: ");
-            army[i].setNombre(sc.next());
-            System.out.println("Ingrese su nivel de vida");
-            army[i].setVida(sc.nextInt());
-        }
-        int i = 1;
-        for (Soldado s : army) {
-            System.out.println("Soldado " + i + " : " + s.getNombre());
-            System.out.println("Tiene " + s.getVida() + " puntos de vida\n");
-            i++;
-        }
-    }
-}
-	\end{lstlisting}
-	
-	\begin{itemize}
-		\item Y ahora trabajo el problema de los dos ejércitos usando arreglos de objetos, la lógica es similar pero para almacenar los nombres uso los atributos de los objetos.
-	\end{itemize}
-	\begin{lstlisting}[language=java,caption={Los 5 soldados}, numbers=left][H]
-public class VideoJuego {
-    public static void main(String[] args) {
-        int len1 = (int) (Math.random() * 5 + 1);
-        int len2 = (int) (Math.random() * 5 + 1);
-        Soldado[] army1 = new Soldado[len1];
-        Soldado[] army2 = new Soldado[len2];
-        init(army1);
-        init(army2);
-        mostrar(army1, army2);
-        win(len1, len2);
-
-    }
-
-    public static void init(Soldado[] soldiers) {
-        for (int i = 0; i < soldiers.length; i++) {
-            soldiers[i] = new Soldado();
-            soldiers[i].setNombre("Soldado " + i);
-        }
-    }
-
-    public static void win(int l1, int l2) {
-        if (l1 > l2) {
-            System.out.println("El ejercito 1 es ganador");
-        } else if (l1 == l2) {
-            System.out.println("Hay empate");
         } else {
-            System.out.println("El ejercito 2 es ganador");
+            System.out.println("Nave no encontrada");
         }
-    }
-
-    public static void mostrar(Soldado[] army1, Soldado[] army2) {
-        System.out.println("Ejercito 1: ");
-        for (int i = 0; i < army1.length; i++) {
-            System.out.println(army1[i].getNombre());
-        }
-        System.out.println();
-        System.out.println("Ejercito 2: ");
-        for (int i = 0; i < army2.length; i++) {
-            System.out.println(army2[i].getNombre());
-        }
-
-    }
-}
+        ordenarPorPuntosBurbuja(misNaves);
+	\end{lstlisting}
+	\begin{itemize}	
+		\item A continuación pruebo el código con cinco naves para no tener que ingresar tantos datos.
+	\end{itemize}
+	\begin{lstlisting}[language=bash,caption={Prueba del código}][H]
+	 $javac DemoBatalla.java Nave.java
+	 $java DemoBatalla
+	 Nave 1:
+	 Connor 1 A true 60
+	 Nave 2:
+	 Delta 3 C true 25
+	 Nave 3:
+	 Whisky 6 J true 40
+	 Nave 4:
+	 Jayce 7 A true 55
+	 Nave 5:
+	 Abigail 8 B true 42
 	\end{lstlisting}
 	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth,keepaspectratio]{img/captura1.png}
+		%\includesvg{img/automata.svg}
+		%\label{img:mot2}
+		%\caption{Product backlog.}
+	\end{figure}
+	\begin{itemize}
+		\item Mostrando las naves.
+	\end{itemize}
 	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth,keepaspectratio]{img/captura2.png}
+		%\includesvg{img/automata.svg}
+		%\label{img:mot2}
+		%\caption{Product backlog.}
+	\end{figure}
+	\begin{itemize}
+		\item Buscando un nombre.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth,keepaspectratio]{img/captura3.png}
+		%\includesvg{img/automata.svg}
+		%\label{img:mot2}
+		%\caption{Product backlog.}
+	\end{figure}
+	\begin{itemize}
+		\item Ordenando por puntaje.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth,keepaspectratio]{img/captura1.png}
+		%\includesvg{img/automata.svg}
+		%\label{img:mot2}
+		%\caption{Product backlog.}
+	\end{figure}
+	\begin{itemize}
+		\item Ordenando por nombre.
+	\end{itemize}
 	
 	\section{\textcolor{red}{Rúbricas}}
 	
@@ -719,8 +511,7 @@ public class VideoJuego {
 
 \section{Referencias}
 	\begin{itemize}
-		\item \url {https://www.w3schools.com/java/java_modifiers.asp}
-		\item \url {https://puntocomnoesunlenguaje.blogspot.com/2013/04/llenar-un-array-con-numeros-aleatorios.html}
+		\item Fundamentos de la programación 2 - Tópicos de la programación Orientada a Objetos (Marco Aedo)
 	\end{itemize}
 	
 %\clearpage

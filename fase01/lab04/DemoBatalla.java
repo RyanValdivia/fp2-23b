@@ -28,13 +28,10 @@ public class DemoBatalla {
         }
         System.out.println("\nNaves creadas:");
         mostrarNaves(misNaves);
-        mostrarPorNombre(misNaves);
-        mostrarPorPuntos(misNaves);
-        System.out.println("\nNave con mayor numero de puntos: " + mostrarMayorPuntos(misNaves).getNombre());
-        mostrarNaves(desordenar(misNaves));
+        Nave[] navesCopia = misNaves;
 
         String nombre = sc.next();
-        // mostrar los datos de la nave con dicho nombre, mensaje de “no encontrado” en
+        // mostrar los datos de la nave con dicho nombre, mensaje de no encontrado en
         // caso contrario
         int pos = busquedaLinealNombre(misNaves, nombre);
         if (pos != -1) {
@@ -50,18 +47,37 @@ public class DemoBatalla {
         } else {
             System.out.println("Nave no encontrada");
         }
+
         ordenarPorPuntosBurbuja(misNaves);
         mostrarNaves(misNaves);
+        misNaves = navesCopia;
         ordenarPorNombreBurbuja(misNaves);
         mostrarNaves(misNaves);
 
         pos = busquedaBinariaNombre(misNaves, nombre);
+        if (pos != -1) {
+            Nave n = misNaves[pos];
+            System.out.println("Nave " + pos + ":" + n.getNombre());
+            System.out.println("Posicion: " + n.getFila() + n.getColumna());
+            System.out.println("Puntos: " + n.getPuntos());
+            if (n.getEstado()) {
+                System.out.println("Sigue con vida");
+            } else {
+                System.out.println("Fue destruida");
+            }
+        } else {
+            System.out.println("Nave no encontrada");
+        }
+        misNaves = navesCopia;
         ordenarPorPuntosSeleccion(misNaves);
         mostrarNaves(misNaves);
+        misNaves = navesCopia;
         ordenarPorPuntosInsercion(misNaves);
         mostrarNaves(misNaves);
+        misNaves = navesCopia;
         ordenarPorNombreSeleccion(misNaves);
         mostrarNaves(misNaves);
+        misNaves = navesCopia;
         ordenarPorNombreInsercion(misNaves);
         mostrarNaves(misNaves);
 
