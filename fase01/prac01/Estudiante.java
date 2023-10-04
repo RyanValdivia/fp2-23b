@@ -1,10 +1,11 @@
 public class Estudiante {
     private int cui;
     private String correo;
-    private String nombres;
+    private String nombre;
+    private String sNombre;
     private String apPaterno;
     private String apMaterno;
-    private int[] fecha;
+    private int[] fecha = new int[3];
     private boolean genero;
     private String estado;
 
@@ -16,8 +17,12 @@ public class Estudiante {
         this.correo = s;
     }
 
-    public void setNombres(String s) {
-        this.nombres = s;
+    public void setNombre(String s) {
+        this.nombre = s;
+    }
+
+    public void setSNombre(String s) {
+        this.sNombre = s;
     }
 
     public void setApPaterno(String s) {
@@ -54,8 +59,12 @@ public class Estudiante {
         return this.correo;
     }
 
-    public String getNombres() {
-        return this.nombres;
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public String getSNombre() {
+        return this.sNombre;
     }
 
     public String getApPaterno() {
