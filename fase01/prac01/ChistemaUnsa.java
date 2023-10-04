@@ -19,8 +19,53 @@ public class ChistemaUnsa {
             chunsa[i].setGenero(Boolean.parseBoolean(sc.next()));
             chunsa[i].setEstado(Boolean.parseBoolean(sc.next()));
         }
+
         for (Estudiante e : chunsa) {
             System.out.println(e.getNombre());
+        }
+    }
+
+    public static void insertionSortCui(Estudiante[] chunsa) {
+        for (int i = 0; i < chunsa.length; i++) {
+            Estudiante valor = chunsa[0];
+            int j = i;
+            for (j = i; 0 < j && chunsa[j - 1].getCui() > valor.getCui(); j--) {
+                chunsa[j] = chunsa[j - 1];
+            }
+            chunsa[j] = valor;
+        }
+    }
+
+    public static void insertionSortNombre(Estudiante[] chunsa) {
+        for (int i = 1; i < chunsa.length; i++) {
+            Estudiante valor = chunsa[i];
+            int j = i;
+            for (j = i; 0 < j && chunsa[j - 1].getNombre().compareTo(valor.getNombre()) < 0; j--) {
+                chunsa[j] = chunsa[j - 1];
+            }
+            chunsa[j] = valor;
+        }
+    }
+
+    public static void insertionSortApellido(Estudiante[] chunsa) {
+        for (int i = 1; i < chunsa.length; i++) {
+            Estudiante valor = chunsa[i];
+            int j = i;
+            for (j = i; 0 < j && chunsa[j - 1].getApPaterno().compareTo(valor.getApPaterno()) < 0; j--) {
+                chunsa[j] = chunsa[j - 1];
+            }
+            chunsa[j] = valor;
+        }
+    }
+
+    public static void insertionSortCorreo(Estudiante[] chunsa) {
+        for (int i = 1; i < chunsa.length; i++) {
+            Estudiante valor = chunsa[i];
+            int j = i;
+            for (j = i; 0 < j && chunsa[j - 1].getCorreo().compareTo(valor.getCorreo()) < 0; j--) {
+                chunsa[j] = chunsa[j - 1];
+            }
+            chunsa[j] = valor;
         }
     }
 }
