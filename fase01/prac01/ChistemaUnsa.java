@@ -68,4 +68,17 @@ public class ChistemaUnsa {
             chunsa[j] = valor;
         }
     }
+
+    public static void insertionSortFecha(Estudiante[] chunsa) {
+        for (int i = 0; i < chunsa.length; i++) {
+            Estudiante valor = chunsa[0];
+            int j = i;
+            for (j = i; 0 < j && chunsa[j - 1].getFecha()[0] > valor.getFecha()[0]
+                    && chunsa[j - 1].getFecha()[1] > valor.getFecha()[1]
+                    && chunsa[j - 1].getFecha()[2] > valor.getFecha()[2]; j--) {
+                chunsa[j] = chunsa[j - 1];
+            }
+            chunsa[j] = valor;
+        }
+    }
 }
