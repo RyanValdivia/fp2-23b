@@ -5,8 +5,8 @@ public class Estudiante {
     private String sNombre;
     private String apPaterno;
     private String apMaterno;
-    private int[] fecha = new int[3];
-    private boolean genero;
+    private String fecha;
+    private String genero;
     private String estado;
 
     public void setCui(int n) {
@@ -33,14 +33,16 @@ public class Estudiante {
         this.apMaterno = s;
     }
 
-    public void setFecha(int y, int m, int d) {
-        this.fecha[0] = y;
-        this.fecha[1] = m;
-        this.fecha[2] = d;
+    public void setFecha(String s) {
+        this.fecha = s;
     }
 
     public void setGenero(boolean b) {
-        this.genero = b;
+        if (b) {
+            this.genero = "Masculino";
+        } else {
+            this.genero = "Femenino";
+        }
     }
 
     public void setEstado(boolean b) {
@@ -75,11 +77,11 @@ public class Estudiante {
         return this.apMaterno;
     }
 
-    public int[] getFecha() {
+    public String getFecha() {
         return this.fecha;
     }
 
-    public boolean getGenero() {
+    public String getGenero() {
         return this.genero;
     }
 

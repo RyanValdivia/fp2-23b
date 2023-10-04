@@ -7,6 +7,7 @@ public class ChistemaUnsa {
         Estudiante[] chunsa = new Estudiante[cDatos];
         Scanner sc = new Scanner(new File("data.csv"));
         Scanner sc2 = new Scanner(System.in);
+        FileWriter fw = new FileWriter("datos.dat", true);
         sc.useDelimiter(", ");
         for (int i = 0; i < chunsa.length; i++) {
             chunsa[i] = new Estudiante();
@@ -16,7 +17,7 @@ public class ChistemaUnsa {
             chunsa[i].setApMaterno(sc.next());
             chunsa[i].setCorreo(sc.next());
             chunsa[i].setCui(sc.nextInt());
-            chunsa[i].setFecha(sc.nextInt(), sc.nextInt(), sc.nextInt());
+            chunsa[i].setFecha(sc.next());
             chunsa[i].setGenero(Boolean.parseBoolean(sc.next()));
             chunsa[i].setEstado(Boolean.parseBoolean(sc.next()));
         }
@@ -64,7 +65,6 @@ public class ChistemaUnsa {
                 break;
             default:
         }
-
     }
 
     public static void mostrarAlumno(Estudiante[] chunsa, int indice) {
@@ -73,7 +73,7 @@ public class ChistemaUnsa {
                 + e.getApMaterno());
         System.out.println("Correo institucional: " + e.getCorreo());
         System.out.println("CUI: " + e.getCui());
-        System.out.println("Fecha de nacimiento: " + e.getFecha()[0] + "-" + e.getFecha()[1] + "-" + e.getFecha()[2]);
+        System.out.println("Fecha de nacimiento: " + e.getFecha());
         System.out.println("Genero: " + e.getGenero());
         System.out.println("Estado: " + e.getEstado());
     }
