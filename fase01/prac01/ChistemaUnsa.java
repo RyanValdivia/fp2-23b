@@ -30,7 +30,7 @@ public class ChistemaUnsa {
         int eleccion = sc2.nextInt();
         switch (eleccion) {
             case 1:
-                insertionSortApellido(chunsa);
+                quickSortApellido(chunsa, 0, chunsa.length - 1);
                 System.out.println("Ingrese el nombre y apellido del estudiante a buscar: ");
                 String nombre = sc2.next(), apellido = sc2.next();
                 int indice = binarySearchNombre(chunsa, nombre, apellido);
@@ -41,7 +41,7 @@ public class ChistemaUnsa {
                 }
                 break;
             case 2:
-                insertionSortCui(chunsa);
+                quickSortCui(chunsa, 0, chunsa.length - 1);
                 System.out.println("Ingrese el CUI a buscar: ");
                 int cui = sc2.nextInt();
                 int indice2 = binarySearchCui(chunsa, cui);
@@ -53,7 +53,7 @@ public class ChistemaUnsa {
                 }
                 break;
             case 3:
-                insertionSortCorreo(chunsa);
+                quickSortCorreo(chunsa, 0, chunsa.length - 1);
                 System.out.println("Ingrese el correo institucional a buscar: ");
                 String correo = sc2.next();
                 int indice3 = binarySearchCorreo(chunsa, correo);
@@ -159,5 +159,86 @@ public class ChistemaUnsa {
             }
         }
         return -1;
+    }
+
+    public static void quickSortApellido(Estudiante[] chunsa, int baja, int alta) {
+        int indicePivot = baja + (alta - baja) / 2;
+        int i = baja, j = alta;
+        Estudiante pivot = chunsa[indicePivot];
+        while (i <= j) {
+            while (chunsa[i].getApPaterno().compareTo(pivot.getApPaterno()) < 0) {
+                i++;
+            }
+            while (chunsa[i].getApPaterno().compareTo(pivot.getApPaterno()) > 0) {
+                j--;
+            }
+            if (i <= j) {
+                swap(chunsa, i, j);
+                i++;
+                j--;
+            }
+            if (baja < j) {
+                quickSortApellido(chunsa, baja, j);
+            }
+            if (alta > i) {
+                quickSortApellido(chunsa, i, alta);
+            }
+        }
+    }
+
+    public static void quickSortCui(Estudiante[] chunsa, int baja, int alta) {
+        int indicePivot = baja + (alta - baja) / 2;
+        Estudiante pivot = chunsa[indicePivot];
+        int i = baja, j = alta;
+        while (i <= j) {
+            while (chunsa[i].getCui() < pivot.getCui()) {
+                i++;
+            }
+            while (chunsa[j].getCui() > pivot.getCui()) {
+                j--;
+            }
+            if (i <= j) {
+                swap(chunsa, i, j);
+                i++;
+                j--;
+            }
+            if (baja < j) {
+                quickSortCui(chunsa, baja, j);
+            }
+            if (alta > i) {
+                quickSortCui(chunsa, i, alta);
+            }
+        }
+    }
+
+    public static void quickSortCorreo(Estudiante[] chunsa, int baja, int alta) {
+        int indicePivot = baja + (alta - baja) / 2;
+        Estudiante pivot = chunsa[indicePivot];
+        int i = baja, j = alta;
+        while (i <= j) {
+            while (chunsa[i].getCorreo().compareTo(pivot.getCorreo()) < 0) {
+                i++;
+            }
+            while (chunsa[i].getCorreo().compareTo(pivot.getCorreo()) > 0) {
+                j--;
+            }
+            if (i <= j) {
+                swap(chunsa, i, j);
+                i++;
+                j--;
+            }
+            if (baja < j) {
+                quickSortCorreo(chunsa, baja, j);
+            }
+            if (alta > i) {
+                quickSortCorreo(chunsa, i, alta);
+            }
+        }
+    }
+
+    public static void swap(Estudiante[] chunsa, int i, int j) {
+        Estudiante temp = chunsa[i];
+        chunsa[i] = chunsa[j];
+        chunsa[j] = temp;
     }
 }
