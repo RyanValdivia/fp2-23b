@@ -21,49 +21,108 @@ public class ChistemaUnsa {
             chunsa[i].setGenero(Boolean.parseBoolean(sc.next()));
             chunsa[i].setEstado(Boolean.parseBoolean(sc.next()));
         }
+        System.out.println("Tipo de ordenamiento: ");
+        System.out.println("1. Insertion Sort");
+        System.out.println("2. Quick Sort");
+        int eleccion1 = sc2.nextInt();
         System.out.println("Bienvenido a la chunsa, que desea buscar?");
         System.out.println("Opciones: ");
         System.out.println("1. Buscar por Nombre y apellido");
         System.out.println("2. Buscar por CUI");
         System.out.println("3. Buscar por correo");
         System.out.println("Ingrese su elección: ");
-        int eleccion = sc2.nextInt();
-        switch (eleccion) {
+        int eleccion2 = sc2.nextInt();
+        switch (eleccion1) {
             case 1:
-                quickSortApellido(chunsa, 0, chunsa.length - 1);
-                System.out.println("Ingrese el nombre y apellido del estudiante a buscar: ");
-                String nombre = sc2.next(), apellido = sc2.next();
-                int indice = binarySearchNombre(chunsa, nombre, apellido);
-                if (indice == -1) {
-                    System.out.println("Alumno no encontrado");
-                } else {
-                    mostrarAlumno(chunsa, indice);
+                switch (eleccion2) {
+                    case 1:
+                        long momento = System.nanoTime();
+                        insertionSortApellido(chunsa);
+                        fw.write(args[0] + "\t" + (momento - System.nanoTime()));
+                        System.out.println("Ingrese el nombre y apellido del estudiante a buscar: ");
+                        String nombre = sc2.next(), apellido = sc2.next();
+                        int indice = binarySearchNombre(chunsa, nombre, apellido);
+                        if (indice == -1) {
+                            System.out.println("Alumno no encontrado");
+                        } else {
+                            mostrarAlumno(chunsa, indice);
+                        }
+                        break;
+                    case 2:
+                        long momento2 = System.nanoTime();
+                        insertionSortCui(chunsa);
+                        fw.write(args[0] + "\t" + (momento2 - System.nanoTime()));
+                        System.out.println("Ingrese el CUI a buscar: ");
+                        int cui = sc2.nextInt();
+                        int indice2 = binarySearchCui(chunsa, cui);
+                        System.out.println(indice2);
+                        if (indice2 == -1) {
+                            System.out.println("Alumno no encontrado");
+                        } else {
+                            mostrarAlumno(chunsa, indice2);
+                        }
+                        break;
+                    case 3:
+                        long momento3 = System.nanoTime();
+                        insertionSortCorreo(chunsa);
+                        fw.write(args[0] + "\t" + (momento3 - System.nanoTime()));
+                        System.out.println("Ingrese el correo institucional a buscar: ");
+                        String correo = sc2.next();
+                        int indice3 = binarySearchCorreo(chunsa, correo);
+                        if (indice3 == -1) {
+                            System.out.println("Alumno no encontrado");
+                        } else {
+                            mostrarAlumno(chunsa, indice3);
+                        }
+                        break;
+                    default:
                 }
                 break;
             case 2:
-                quickSortCui(chunsa, 0, chunsa.length - 1);
-                System.out.println("Ingrese el CUI a buscar: ");
-                int cui = sc2.nextInt();
-                int indice2 = binarySearchCui(chunsa, cui);
-                System.out.println(indice2);
-                if (indice2 == -1) {
-                    System.out.println("Alumno no encontrado");
-                } else {
-                    mostrarAlumno(chunsa, indice2);
+                switch (eleccion2) {
+                    case 1:
+                        long momento = System.nanoTime();
+                        quickSortApellido(chunsa, 0, chunsa.length - 1);
+                        fw.write(args[0] + "\t" + (momento - System.nanoTime()));
+                        System.out.println("Ingrese el nombre y apellido del estudiante a buscar: ");
+                        String nombre = sc2.next(), apellido = sc2.next();
+                        int indice = binarySearchNombre(chunsa, nombre, apellido);
+                        if (indice == -1) {
+                            System.out.println("Alumno no encontrado");
+                        } else {
+                            mostrarAlumno(chunsa, indice);
+                        }
+                        break;
+                    case 2:
+                        long momento2 = System.nanoTime();
+                        quickSortCui(chunsa, 0, chunsa.length - 1);
+                        fw.write(args[0] + "\t" + (momento2 - System.nanoTime()));
+                        System.out.println("Ingrese el CUI a buscar: ");
+                        int cui = sc2.nextInt();
+                        int indice2 = binarySearchCui(chunsa, cui);
+                        System.out.println(indice2);
+                        if (indice2 == -1) {
+                            System.out.println("Alumno no encontrado");
+                        } else {
+                            mostrarAlumno(chunsa, indice2);
+                        }
+                        break;
+                    case 3:
+                        long momento3 = System.nanoTime();
+                        quickSortCorreo(chunsa, 0, chunsa.length - 1);
+                        fw.write(args[0] + "\t" + (momento3 - System.nanoTime()));
+                        System.out.println("Ingrese el correo institucional a buscar: ");
+                        String correo = sc2.next();
+                        int indice3 = binarySearchCorreo(chunsa, correo);
+                        if (indice3 == -1) {
+                            System.out.println("Alumno no encontrado");
+                        } else {
+                            mostrarAlumno(chunsa, indice3);
+                        }
+                        break;
+                    default:
                 }
-                break;
-            case 3:
-                quickSortCorreo(chunsa, 0, chunsa.length - 1);
-                System.out.println("Ingrese el correo institucional a buscar: ");
-                String correo = sc2.next();
-                int indice3 = binarySearchCorreo(chunsa, correo);
-                if (indice3 == -1) {
-                    System.out.println("Alumno no encontrado");
-                } else {
-                    mostrarAlumno(chunsa, indice3);
-                }
-                break;
-            default:
+
         }
     }
 
