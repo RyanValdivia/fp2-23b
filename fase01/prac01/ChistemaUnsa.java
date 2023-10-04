@@ -6,6 +6,7 @@ public class ChistemaUnsa {
         int cDatos = Integer.parseInt(args[0]);
         Estudiante[] chunsa = new Estudiante[cDatos];
         Scanner sc = new Scanner(new File("data.csv"));
+        Scanner sc2 = new Scanner(System.in);
         sc.useDelimiter(", ");
         for (int i = 0; i < chunsa.length; i++) {
             chunsa[i] = new Estudiante();
@@ -19,10 +20,24 @@ public class ChistemaUnsa {
             chunsa[i].setGenero(Boolean.parseBoolean(sc.next()));
             chunsa[i].setEstado(Boolean.parseBoolean(sc.next()));
         }
-
-        for (Estudiante e : chunsa) {
-            System.out.println(e.getNombre());
+        System.out.println("Bienvenido a la chunsa, que desea buscar?: ");
+        System.out.println("Opciones: ");
+        System.out.println("1. Buscar por Nombre");
+        System.out.println("2. Buscar por Apellido");
+        System.out.println("3. Buscar por CUI");
+        System.out.println("4. Buscar por correo");
+        System.out.println("5. Buscar por Fecha de Nacimiento");
+        System.out.println("Ingrese su elección: ");
+        int eleccion = sc.nextInt();
+        switch (eleccion) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            default:
         }
+
     }
 
     public static void insertionSortCui(Estudiante[] chunsa) {
@@ -80,5 +95,55 @@ public class ChistemaUnsa {
             }
             chunsa[j] = valor;
         }
+    }
+
+    public static int binarySearchNombre(Estudiante[] chunsa, String nombre, String apellido) {
+        int baja = 0, media, alta = chunsa.length - 1;
+        while (baja <= alta) {
+            media = (alta + baja) / 2;
+            String nMedio = chunsa[media].getApPaterno();
+            int compare = apellido.compareTo(nMedio);
+            if (compare == 0 && nombre.equals(chunsa[media].getNombre())) {
+                return media;
+            } else if (compare < 0) {
+                alta = media - 1;
+            } else {
+                baja = media + 1;
+            }
+        }
+        return -1;
+    }
+
+    public static int binarySearchCui(Estudiante[] chunsa, int cui) {
+        int baja = 0, media, alta = chunsa.length - 1;
+        while (baja <= alta) {
+            media = (alta + baja) / 2;
+            int valor = chunsa[media].getCui();
+            if (valor == cui) {
+                return media;
+            } else if (cui < valor) {
+                alta = media - 1;
+            } else {
+                baja = media + 1;
+            }
+        }
+        return -1;
+    }
+
+    public static int binarySearchCorreo(Estudiante[] chunsa, String correo) {
+        int baja = 0, media, alta = chunsa.length - 1;
+        while (baja <= alta) {
+            media = (alta + baja) / 2;
+            String nMedio = chunsa[media].getCorreo();
+            int compare = correo.compareTo(nMedio);
+            if (compare == 0) {
+                return media;
+            } else if (compare < 0) {
+                alta = media - 1;
+            } else {
+                baja = media + 1;
+            }
+        }
+        return -1;
     }
 }
