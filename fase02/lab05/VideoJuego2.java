@@ -6,7 +6,14 @@ public class VideoJuego2 {
         int[] columnas = numerosRandom(n);
         inicializarArreglo(ejercito, filas, columnas);
         mostrarTablero(ejercito);
+        System.out.println();
         soldadoMayorVida(ejercito, filas, columnas);
+        System.out.println("El nivel de vida de todo el ejercito es: " + promedioYTotal(ejercito, filas, columnas)[0]);
+        System.out
+                .println("El nivel de vida promedio del ejercito es: " + promedioYTotal(ejercito, filas, columnas)[1]);
+        System.out.println();
+        mostrarEjercito(ejercito, filas, columnas);
+
     }
 
     public static void inicializarArreglo(Soldado[][] army, int[] filas, int[] columnas) {
@@ -151,6 +158,23 @@ public class VideoJuego2 {
                 fila = "H";
                 break;
         }
-        System.out.println("Posición: " + (army[i][j].getFila() + 1) + fila);
+        System.out.println("Posición: " + (army[i][j].getFila() + 1) + "-" + fila);
+    }
+
+    public static double[] promedioYTotal(Soldado[][] army, int[] filas, int[] columnas) {
+        int total = 0;
+        for (int i = 0; i < filas.length; i++) {
+            total += army[filas[i]][columnas[i]].getVida();
+        }
+        double[] rpta = new double[] { total, (total * 1.0 / filas.length) };
+        return rpta;
+    }
+
+    public static void mostrarEjercito(Soldado[][] army, int[] filas, int[] columnas) {
+        System.out.println("Ejercito");
+        for (int i = 0; i < filas.length; i++) {
+            mostrarSoldado(army, filas[i], columnas[i]);
+            System.out.println();
+        }
     }
 }
