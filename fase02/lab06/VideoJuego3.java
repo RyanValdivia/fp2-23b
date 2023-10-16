@@ -11,39 +11,58 @@ public class VideoJuego3 {
         int[] columnas2;
         do {
             filas2 = numerosRandom(ej2);
-        } while (!arregloDiff(filas1, filas2));
-        do {
             columnas2 = numerosRandom(ej2);
-        } while (!arregloDiff(columnas1, columnas2));
-        inicializarLista(tablero, filas1, columnas1, 1);
-        inicializarLista(tablero, filas2, columnas2, 2);
+        } while (!diffCoordenadas(filas1, filas2, columnas1, columnas2));
+        inicializarLista(tablero);
+        desplegarEjercito(tablero, filas1, columnas1, 1);
+        desplegarEjercito(tablero, filas2, columnas2, 2);
+        mostrarTablero(tablero);
 
     }
 
-    public static void inicializarLista(ArrayList<ArrayList<Soldado>> army, int[] filas, int[] columnas, int ej) {
-        int v = (int) ((Math.random() * 5) + 1);
+    public static void mostrarSoldados(int[] filas, int[] columnas) {
+        for (int i = 0; i < filas.length; i++) {
+            System.out.println(filas[i] + ", " + columnas[i]);
+        }
+    }
+
+    public static void inicializarLista(ArrayList<ArrayList<Soldado>> army) {
         for (int i = 0; i < 10; i++) {
-            army.add(new ArrayList<>(10));
+            army.add(new ArrayList<>());
         }
-        for (int i = 0; i < filas.length; i++) {
-            for (int j = 0; j < columnas.length; j++) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
                 army.get(i).add(new Soldado());
-            }
-        }
-        int contador = 0;
-        for (int i = 0; i < filas.length; i++) {
-            for (int j = 0; j < columnas.length; j++) {
-                if (i == filas[i] && j == columnas[i]) {
-                    army.get(i).get(j).setNombre("Soldado" + contador + "X" + ej);
-                    army.get(i).get(j).setVida(v);
-                    army.get(i).get(j).setFila(i);
-                    army.get(i).get(j).setColumna(j);
-                } else {
-                    army.get(i).get(j).setNombre("          ");
-                }
+                army.get(i).get(j).setNombre("          ");
             }
         }
 
+    }
+
+    public static void desplegarEjercito(ArrayList<ArrayList<Soldado>> army, int[] filas, int[] columnas, int ej) {
+        for (int i = 0; i < filas.length; i++) {
+            int v = (int) ((Math.random() * 5) + 1);
+            army.get(filas[i]).get(columnas[i]).setNombre("Soldado" + i + "X" + ej);
+            army.get(filas[i]).get(columnas[i]).setVida(v);
+            army.get(filas[i]).get(columnas[i]).setFila(filas[i] + 1);
+            army.get(filas[i]).get(columnas[i]).setColumna(columnas[i] + 1);
+        }
+    }
+
+    public static void mostrarTablero(ArrayList<ArrayList<Soldado>> army) {
+        System.out.println(crearTecho());
+        for (int i = 0; i < 10; i++) {
+            System.out.println(separadorSup());
+            for (int j = 0; j < 10; j++) {
+                if (j == 10 - 1) {
+                    System.out.print("| " + army.get(i).get(j).getNombre() + " |");
+                } else {
+                    System.out.print("| " + army.get(i).get(j).getNombre() + " ");
+                }
+            }
+            System.out.println();
+            System.out.println(separadorInf());
+        }
     }
 
     public static int[] numerosRandom(int q) {
@@ -70,14 +89,52 @@ public class VideoJuego3 {
         return false;
     }
 
-    public static boolean arregloDiff(int[] arr1, int[] arr2) {
-        if (arr1.length > arr2.length) {
-            for (int i = 0; i < arr2.length; i++) {
-                if (arr2[i] == arr1[i]) {
+    public static boolean diffCoordenadas(int[] filas1, int[] filas2, int[] columnas1, int[] columnas2) {
+        if (filas1.length > filas2.length) {
+            for (int i = 0; i < filas2.length; i++) {
+                if (filas1[i] == filas2[i] && columnas1[i] == columnas2[i]) {
+                    return false;
+                }
+            }
+        } else {
+            for (int i = 0; i < filas1.length; i++) {
+                if (filas1[i] == filas2[i] && columnas1[i] == columnas2[i]) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    public static String crearTecho() {
+        String franky = "";
+        for (int i = 0; i < 121; i++) {
+            franky += "_";
+        }
+        return franky;
+    }
+
+    public static String separadorInf() {
+        String franky = "";
+        for (int i = 0; i < 121; i++) {
+            if (i % 13 == 0) {
+                System.out.print("|");
+            } else {
+                System.out.print("_");
+            }
+        }
+        return franky;
+    }
+
+    public static String separadorSup() {
+        String franky = "";
+        for (int i = 0; i < 121; i++) {
+            if (i % 13 == 0) {
+                System.out.print("|");
+            } else {
+                System.out.print(" ");
+            }
+        }
+        return franky;
     }
 }
