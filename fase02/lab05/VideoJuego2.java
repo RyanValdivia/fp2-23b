@@ -1,5 +1,8 @@
+import java.util.*;
+
 public class VideoJuego2 {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         Soldado[][] ejercito = new Soldado[10][10];
         int n = (int) ((Math.random() * 10) + 1);
         int[] filas = numerosRandom(n);
@@ -13,7 +16,21 @@ public class VideoJuego2 {
                 .println("El nivel de vida promedio del ejercito es: " + promedioYTotal(ejercito, filas, columnas)[1]);
         System.out.println();
         mostrarEjercito(ejercito, filas, columnas);
-
+        Soldado[] army = crearArreglo(ejercito, filas, columnas);
+        System.out.println("Bajo que criterio de ordenamiento le gustaría ordenar el arreglo?");
+        System.out.println("1. Burbuja");
+        System.out.println("2. Insercion");
+        switch (sc.nextInt()) {
+            case 1:
+                ordenamientoBurbuja(army);
+                break;
+            case 2:
+                ordenamientoInsercion(army);
+                break;
+            default:
+        }
+        System.out.println();
+        mostrar(army);
     }
 
     public static void inicializarArreglo(Soldado[][] army, int[] filas, int[] columnas) {
@@ -176,5 +193,85 @@ public class VideoJuego2 {
             mostrarSoldado(army, filas[i], columnas[i]);
             System.out.println();
         }
+    }
+
+    public static Soldado[] crearArreglo(Soldado[][] army, int[] filas, int[] columnas) {
+        Soldado[] nuevo = new Soldado[filas.length];
+        for (int i = 0; i < nuevo.length; i++) {
+            nuevo[i] = army[filas[i]][columnas[i]];
+        }
+        return nuevo;
+    }
+
+    public static void ordenamientoBurbuja(Soldado[] army) {
+        for (int i = 0; i < army.length; i++) {
+            for (int j = 0; j < army.length - 1; j++) {
+                if (army[j].getVida() > army[j + 1].getVida()) {
+                    intercambiar(army, j, j + 1);
+                }
+            }
+        }
+    }
+
+    public static void ordenamientoInsercion(Soldado[] army) {
+        for (int i = 1; i < army.length; i++) {
+            Soldado valor = army[i];
+            int j = i;
+            for (j = i; 0 < j && army[j - 1].getVida() > valor.getVida(); j--) {
+                army[j] = army[j - 1];
+            }
+            army[j] = valor;
+        }
+    }
+
+    public static void mostrar(Soldado[] army) {
+        for (int i = 0; i < army.length; i++) {
+            String fila;
+            System.out.println("Nombre: " + army[i].getNombre());
+            System.out.println("Vida: " + army[i].getVida() + " HP");
+            switch (army[i].getColumna() + 1) {
+                case 1:
+                    fila = "A";
+                    break;
+                case 2:
+                    fila = "B";
+                    break;
+                case 3:
+                    fila = "C";
+                    break;
+                case 4:
+                    fila = "D";
+                    break;
+                case 5:
+                    fila = "E";
+                    break;
+                case 6:
+                    fila = "F";
+                    break;
+                case 7:
+                    fila = "G";
+                    break;
+                case 8:
+                    fila = "H";
+                    break;
+                case 9:
+                    fila = "I";
+                    break;
+                case 10:
+                    fila = "J";
+                    break;
+                default:
+                    fila = "H";
+                    break;
+            }
+            System.out.println("Posición: " + (army[i].getFila() + 1) + "-" + fila);
+        }
+    }
+
+    public static void intercambiar(Soldado[] flota, int i, int j) {
+        Soldado temp;
+        temp = flota[i];
+        flota[i] = flota[j];
+        flota[j] = temp;
     }
 }
