@@ -108,7 +108,7 @@ public class VideoJuego3 {
 
     public static String crearTecho() {
         String franky = "";
-        for (int i = 0; i < 121; i++) {
+        for (int i = 0; i < 131; i++) {
             franky += "_";
         }
         return franky;
@@ -116,7 +116,7 @@ public class VideoJuego3 {
 
     public static String separadorInf() {
         String franky = "";
-        for (int i = 0; i < 121; i++) {
+        for (int i = 0; i < 131; i++) {
             if (i % 13 == 0) {
                 System.out.print("|");
             } else {
@@ -128,7 +128,7 @@ public class VideoJuego3 {
 
     public static String separadorSup() {
         String franky = "";
-        for (int i = 0; i < 121; i++) {
+        for (int i = 0; i < 131; i++) {
             if (i % 13 == 0) {
                 System.out.print("|");
             } else {
