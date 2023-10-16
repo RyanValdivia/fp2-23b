@@ -1,15 +1,16 @@
 public class VideoJuego2 {
     public static void main(String[] args) {
         Soldado[][] ejercito = new Soldado[10][10];
-        inicializarArreglo(ejercito);
-        mostrarTablero(ejercito);
-    }
-
-    public static void inicializarArreglo(Soldado[][] army) {
         int n = (int) ((Math.random() * 10) + 1);
         int[] filas = numerosRandom(n);
         int[] columnas = numerosRandom(n);
-        for (int i = 0; i < n; i++) {
+        inicializarArreglo(ejercito, filas, columnas);
+        mostrarTablero(ejercito);
+        soldadoMayorVida(ejercito, filas, columnas);
+    }
+
+    public static void inicializarArreglo(Soldado[][] army, int[] filas, int[] columnas) {
+        for (int i = 0; i < filas.length; i++) {
             int v = (int) ((Math.random() * 5) + 1);
             army[filas[i]][columnas[i]] = new Soldado();
             army[filas[i]][columnas[i]].setNombre("Soldado" + i);
@@ -98,5 +99,58 @@ public class VideoJuego2 {
             }
         }
         return franky;
+    }
+
+    public static void soldadoMayorVida(Soldado[][] army, int[] filas, int[] columnas) {
+        int max = 0;
+        for (int i = 0; i < filas.length; i++) {
+            if (army[filas[i]][columnas[i]].getVida() > army[filas[max]][columnas[max]].getVida()) {
+                max = i;
+            }
+        }
+        System.out.println("El soldado con mayor vida es: ");
+        mostrarSoldado(army, filas[max], columnas[max]);
+    }
+
+    public static void mostrarSoldado(Soldado[][] army, int i, int j) {
+        String fila;
+        System.out.println("Nombre: " + army[i][j].getNombre());
+        System.out.println("Vida: " + army[i][j].getVida() + " HP");
+        switch (army[i][j].getColumna() + 1) {
+            case 1:
+                fila = "A";
+                break;
+            case 2:
+                fila = "B";
+                break;
+            case 3:
+                fila = "C";
+                break;
+            case 4:
+                fila = "D";
+                break;
+            case 5:
+                fila = "E";
+                break;
+            case 6:
+                fila = "F";
+                break;
+            case 7:
+                fila = "G";
+                break;
+            case 8:
+                fila = "H";
+                break;
+            case 9:
+                fila = "I";
+                break;
+            case 10:
+                fila = "J";
+                break;
+            default:
+                fila = "H";
+                break;
+        }
+        System.out.println("Posición: " + (army[i][j].getFila() + 1) + fila);
     }
 }
