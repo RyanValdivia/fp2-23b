@@ -21,6 +21,10 @@ public class VideoJuego4 {
         mostrarTablero(tablero);
         soldadoMayorVida(ejercito1, 1);
         soldadoMayorVida(ejercito2, 2);
+        vidaPromedio(ejercito1, 1);
+        vidaPromedio(ejercito2, 2);
+        mostrarEjercito(ejercito1, 1);
+        mostrarEjercito(ejercito2, 2);
     }
 
     public static int[] numerosRandom(int q) {
@@ -222,5 +226,53 @@ public class VideoJuego4 {
                 break;
         }
         System.out.println("Posición: " + (army[i].getFila() + 1) + "-" + columna);
+        System.out.println();
+    }
+
+    public static void mostrarEjercito(Soldado[] army, int ej) {
+        System.out.println("Ejercito " + ej);
+        System.out.println(army[0].getBandera());
+        for (int i = 0; i < army.length; i++) {
+            mostrarSoldado(army, i);
+        }
+        System.out.println();
+    }
+
+    public static void vidaPromedio(Soldado[] army, int ej) {
+        int total = 0;
+        for (Soldado s : army) {
+            total += s.getVida();
+        }
+        System.out.println("La vida total del ejercito " + ej + " es: " + total);
+        System.out.println("La vida promedio del ejercito " + ej + " es: " + total / (1.0 * army.length));
+        System.out.println();
+    }
+
+    public static void ordenamientoInsercion(Soldado[] army) {
+        for (int i = 1; i < army.length; i++) {
+            Soldado valor = army[i];
+            int j = i;
+            for (j = i; 0 < j && army[j - 1].getVida() < valor.getVida(); j--) {
+                army[j] = army[j - 1];
+            }
+            army[j] = valor;
+        }
+    }
+
+    public static void ordenamientoBurbuja(Soldado[] army) {
+        for (int i = 0; i < army.length; i++) {
+            for (int j = 0; j < army.length - 1; j++) {
+                if (army[j].getVida() < army[j + 1].getVida()) {
+                    intercambiar(army, j, j + 1);
+                }
+            }
+        }
+    }
+
+    public static void intercambiar(Soldado[] flota, int i, int j) {
+        Soldado temp;
+        temp = flota[i];
+        flota[i] = flota[j];
+        flota[j] = temp;
     }
 }
