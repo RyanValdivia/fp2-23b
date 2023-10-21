@@ -1,7 +1,8 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class VideoJuego4 {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         Soldado[][] tablero = new Soldado[10][10];
         int ej1 = (int) (Math.random() * 10 + 1);
         int ej2 = (int) (Math.random() * 10 + 1);
@@ -23,6 +24,24 @@ public class VideoJuego4 {
         soldadoMayorVida(ejercito2, 2);
         vidaPromedio(ejercito1, 1);
         vidaPromedio(ejercito2, 2);
+        mostrarEjercito(ejercito1, 1);
+        mostrarEjercito(ejercito2, 2);
+        System.out.println("Bajo que algoritmo de ordenamiento le gustaria ordenar su ejercito?");
+        System.out.println("1. Ordenamiento por burbuja");
+        System.out.println("2. Ordenamiento por insercion");
+        switch (sc.nextInt()) {
+            case 1:
+                ordenamientoBurbuja(ejercito1);
+                ordenamientoBurbuja(ejercito2);
+                break;
+            case 2:
+                ordenamientoInsercion(ejercito1);
+                ordenamientoInsercion(ejercito2);
+                break;
+            default:
+        }
+        System.out.println();
+        System.out.println("Ranking de ambos ejercitos del soldado con mayor a menor vida: \n");
         mostrarEjercito(ejercito1, 1);
         mostrarEjercito(ejercito2, 2);
     }
