@@ -11,7 +11,10 @@ public class VideoJuego4 {
             filas2 = numerosRandom(ej2);
             columnas2 = numerosRandom(ej2);
         } while (!diffCoordenadas(filas1, filas2, columnas1, columnas2));
-
+        Soldado[] ejercito1 = crearArreglo(filas1, columnas1, ej1);
+        Soldado[] ejercito2 = crearArreglo(filas2, columnas2, ej2);
+        desplegarEjercito(tablero, ejercito1);
+        desplegarEjercito(tablero, ejercito2);
     }
 
     public static int[] numerosRandom(int q) {
@@ -53,5 +56,31 @@ public class VideoJuego4 {
             }
         }
         return true;
+    }
+
+    public static Soldado[] crearArreglo(int[] x, int[] y, int nro) {
+        int len = x.length;
+        Soldado[] army = new Soldado[len];
+        for (int i = 0; i < len; i++) {
+            int v = (int) (Math.random() * 5 + 1);
+            army[i] = new Soldado();
+            army[i].setNombre("Soldado" + i + "X" + nro);
+            army[i].setVida(v);
+            army[i].setFila(x[i]);
+            army[i].setColumna(y[i]);
+        }
+        return army;
+    }
+
+    public static void desplegarEjercito(Soldado[][] table, Soldado[] ej) {
+        int q = 0;
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[i].length; j++) {
+                if (i == ej[q].getFila() && j == ej[q].getColumna()) {
+                    table[i][j] = ej[q];
+                    q++;
+                }
+            }
+        }
     }
 }
