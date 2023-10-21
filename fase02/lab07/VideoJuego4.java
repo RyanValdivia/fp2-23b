@@ -72,14 +72,19 @@ public class VideoJuego4 {
             army[i].setVida(v);
             army[i].setFila(x[i]);
             army[i].setColumna(y[i]);
+            if (nro == 1) {
+                army[i].setBandera("##########");
+            } else {
+                army[i].setBandera("**********");
+            }
         }
         return army;
     }
 
     public static void desplegarEjercito(Soldado[][] table, Soldado[] ej) {
         int q = 0;
-        for (int i = 0; i < table.length; i++) {
-            for (int j = 0; j < table[i].length; j++) {
+        for (int i = 0; i < table.length && q < ej.length; i++) {
+            for (int j = 0; j < table[i].length && q < ej.length; j++) {
                 if (i == ej[q].getFila() && j == ej[q].getColumna()) {
                     table[i][j] = ej[q];
                     q++;
@@ -93,6 +98,7 @@ public class VideoJuego4 {
             for (int j = 0; j < table[i].length; j++) {
                 table[i][j] = new Soldado();
                 table[i][j].setNombre("          ");
+                table[i][j].setBandera("          ");
             }
         }
     }
@@ -103,12 +109,33 @@ public class VideoJuego4 {
             System.out.println(separadorSup());
             for (int j = 0; j < tb[i].length; j++) {
                 if (j == tb[i].length - 1) {
-                    System.out.print("| " + tb[i][j].getNombre() + " |");
+                    System.out.print("| " + tb[i][j].getBandera() + " |\n");
+                } else {
+                    System.out.print("| " + tb[i][j].getBandera() + " ");
+                }
+            }
+            for (int j = 0; j < tb[i].length; j++) {
+                if (j == tb[i].length - 1) {
+                    System.out.print("| " + tb[i][j].getNombre() + " |\n");
                 } else {
                     System.out.print("| " + tb[i][j].getNombre() + " ");
                 }
             }
-            System.out.println();
+            for (int j = 0; j < tb[i].length; j++) {
+                if (tb[i][j].getVida() != 0) {
+                    if (j == tb[i].length - 1) {
+                        System.out.print("|    " + tb[i][j].getVida() + " HP" + "    |\n");
+                    } else {
+                        System.out.print("|    " + tb[i][j].getVida() + " HP" + "    ");
+                    }
+                } else {
+                    if (j == tb[i].length - 1) {
+                        System.out.print("| " + tb[i][j].getNombre() + " |\n");
+                    } else {
+                        System.out.print("| " + tb[i][j].getNombre() + " ");
+                    }
+                }
+            }
             System.out.println(separadorInf());
         }
     }
