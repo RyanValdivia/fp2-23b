@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class VideoJuego4 {
     public static void main(String[] args) {
         Soldado[][] tablero = new Soldado[10][10];
@@ -11,10 +13,12 @@ public class VideoJuego4 {
             filas2 = numerosRandom(ej2);
             columnas2 = numerosRandom(ej2);
         } while (!diffCoordenadas(filas1, filas2, columnas1, columnas2));
-        Soldado[] ejercito1 = crearArreglo(filas1, columnas1, ej1);
-        Soldado[] ejercito2 = crearArreglo(filas2, columnas2, ej2);
+        Soldado[] ejercito1 = crearArreglo(filas1, columnas1, 1);
+        Soldado[] ejercito2 = crearArreglo(filas2, columnas2, 2);
+        inicializarEjercito(tablero);
         desplegarEjercito(tablero, ejercito1);
         desplegarEjercito(tablero, ejercito2);
+        mostrarTablero(tablero);
     }
 
     public static int[] numerosRandom(int q) {
@@ -82,5 +86,62 @@ public class VideoJuego4 {
                 }
             }
         }
+    }
+
+    public static void inicializarEjercito(Soldado[][] table) {
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[i].length; j++) {
+                table[i][j] = new Soldado();
+                table[i][j].setNombre("          ");
+            }
+        }
+    }
+
+    public static void mostrarTablero(Soldado[][] tb) {
+        System.out.println(crearTecho());
+        for (int i = 0; i < tb.length; i++) {
+            System.out.println(separadorSup());
+            for (int j = 0; j < tb[i].length; j++) {
+                if (j == tb[i].length - 1) {
+                    System.out.print("| " + tb[i][j].getNombre() + " |");
+                } else {
+                    System.out.print("| " + tb[i][j].getNombre() + " ");
+                }
+            }
+            System.out.println();
+            System.out.println(separadorInf());
+        }
+    }
+
+    public static String crearTecho() {
+        String franky = "";
+        for (int i = 0; i < 131; i++) {
+            franky += "_";
+        }
+        return franky;
+    }
+
+    public static String separadorInf() {
+        String franky = "";
+        for (int i = 0; i < 131; i++) {
+            if (i % 13 == 0) {
+                System.out.print("|");
+            } else {
+                System.out.print("_");
+            }
+        }
+        return franky;
+    }
+
+    public static String separadorSup() {
+        String franky = "";
+        for (int i = 0; i < 131; i++) {
+            if (i % 13 == 0) {
+                System.out.print("|");
+            } else {
+                System.out.print(" ");
+            }
+        }
+        return franky;
     }
 }

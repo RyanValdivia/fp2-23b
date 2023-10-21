@@ -3,6 +3,7 @@ public class Soldado {
     private int vida;
     private int fila;
     private int columna;
+    private String bandera;
 
     public void setNombre(String s) {
         this.nombre = s;
@@ -20,6 +21,10 @@ public class Soldado {
         this.columna = n;
     }
 
+    public void setBandera(String s) {
+        this.bandera = s;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -34,5 +39,9 @@ public class Soldado {
 
     public int getColumna() {
         return columna;
+    }
+
+    public String getBandera() {
+        return bandera;
     }
 }
