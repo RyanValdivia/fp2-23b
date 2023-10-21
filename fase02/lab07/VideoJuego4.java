@@ -19,6 +19,8 @@ public class VideoJuego4 {
         desplegarEjercito(tablero, ejercito1);
         desplegarEjercito(tablero, ejercito2);
         mostrarTablero(tablero);
+        soldadoMayorVida(ejercito1, 1);
+        soldadoMayorVida(ejercito2, 2);
     }
 
     public static int[] numerosRandom(int q) {
@@ -82,14 +84,8 @@ public class VideoJuego4 {
     }
 
     public static void desplegarEjercito(Soldado[][] table, Soldado[] ej) {
-        int q = 0;
-        for (int i = 0; i < table.length && q < ej.length; i++) {
-            for (int j = 0; j < table[i].length && q < ej.length; j++) {
-                if (i == ej[q].getFila() && j == ej[q].getColumna()) {
-                    table[i][j] = ej[q];
-                    q++;
-                }
-            }
+        for (int i = 0; i < ej.length; i++) {
+            table[ej[i].getFila()][ej[i].getColumna()] = ej[i];
         }
     }
 
@@ -104,6 +100,7 @@ public class VideoJuego4 {
     }
 
     public static void mostrarTablero(Soldado[][] tb) {
+        String vacio = "          ";
         System.out.println(crearTecho());
         for (int i = 0; i < tb.length; i++) {
             System.out.println(separadorSup());
@@ -130,14 +127,15 @@ public class VideoJuego4 {
                     }
                 } else {
                     if (j == tb[i].length - 1) {
-                        System.out.print("| " + tb[i][j].getNombre() + " |\n");
+                        System.out.print("| " + vacio + " |\n");
                     } else {
-                        System.out.print("| " + tb[i][j].getNombre() + " ");
+                        System.out.print("| " + vacio + " ");
                     }
                 }
             }
             System.out.println(separadorInf());
         }
+        System.out.println();
     }
 
     public static String crearTecho() {
@@ -170,5 +168,59 @@ public class VideoJuego4 {
             }
         }
         return franky;
+    }
+
+    public static void soldadoMayorVida(Soldado[] army, int ej) {
+        int max = 0;
+        for (int i = 0; i < army.length; i++) {
+            if (army[i].getVida() > army[max].getVida()) {
+                max = i;
+            }
+        }
+        System.out.println("El soldado con mayor vida del ejercito " + ej + " es: ");
+        mostrarSoldado(army, max);
+        System.out.println();
+    }
+
+    public static void mostrarSoldado(Soldado[] army, int i) {
+        String columna;
+        System.out.println("Nombre: " + army[i].getNombre());
+        System.out.println("Vida: " + army[i].getVida() + " HP");
+        switch (army[i].getColumna() + 1) {
+            case 1:
+                columna = "A";
+                break;
+            case 2:
+                columna = "B";
+                break;
+            case 3:
+                columna = "C";
+                break;
+            case 4:
+                columna = "D";
+                break;
+            case 5:
+                columna = "E";
+                break;
+            case 6:
+                columna = "F";
+                break;
+            case 7:
+                columna = "G";
+                break;
+            case 8:
+                columna = "H";
+                break;
+            case 9:
+                columna = "I";
+                break;
+            case 10:
+                columna = "J";
+                break;
+            default:
+                columna = "K";
+                break;
+        }
+        System.out.println("Posición: " + (army[i].getFila() + 1) + "-" + columna);
     }
 }
