@@ -2,52 +2,56 @@ import java.util.*;
 
 public class VideoJuego5 {
     public static void main(String[] args) {
-        Soldado[][] tablero = new Soldado[10][10];
-        int ej1 = (int) (Math.random() * 10 + 1);
-        int ej2 = (int) (Math.random() * 10 + 1);
         Scanner sc = new Scanner(System.in);
-
-        HashMap<String, Soldado> ejercito1 = new HashMap<>();
-        HashMap<String, Soldado> ejercito2 = new HashMap<>();
-
-        int[] filas1 = numerosRandom(ej1);
-        int[] columnas1 = numerosRandom(ej1);
-        int[] filas2;
-        int[] columnas2;
         do {
-            filas2 = numerosRandom(ej2);
-            columnas2 = numerosRandom(ej2);
-        } while (!diffCoordenadas(filas1, filas2, columnas1, columnas2));
+            Soldado[][] tablero = new Soldado[10][10];
+            int ej1 = (int) (Math.random() * 10 + 1);
+            int ej2 = (int) (Math.random() * 10 + 1);
 
-        inicializarEjercito(ejercito1, filas1, columnas1, 1);
-        inicializarEjercito(ejercito2, filas2, columnas2, 2);
-        inicializarTablero(tablero);
-        desplegarEjercito(tablero, ejercito1);
-        desplegarEjercito(tablero, ejercito2);
-        mostrarTablero(tablero);
-        soldadoMayorVida(ejercito1, 1);
-        soldadoMayorVida(ejercito2, 2);
-        vidaPromedio(ejercito1, 1);
-        vidaPromedio(ejercito2, 2);
-        mostrarEjercito(ejercito1, 1);
-        mostrarEjercito(ejercito2, 2);
+            HashMap<String, Soldado> ejercito1 = new HashMap<>();
+            HashMap<String, Soldado> ejercito2 = new HashMap<>();
 
-        System.out.println("Bajo que algoritmo de ordenamiento le gustaria ordenar su ejercito?");
-        System.out.println("1. Ordenamiento por burbuja");
-        System.out.println("2. Ordenamiento por insercion\n");
-        switch (sc.nextInt()) {
-            case 1:
-                System.out.println("Ranking por Vida: \n");
-                mostrarOrdenado(bubbleSort(ejercito1, 1), 1);
-                mostrarOrdenado(bubbleSort(ejercito2, 2), 2);
-                break;
-            case 2:
-                System.out.println("Ranking por Vida: \n");
-                mostrarOrdenado(insertionSort(ejercito1, 1), 1);
-                mostrarOrdenado(insertionSort(ejercito2, 2), 2);
-                break;
-            default:
-        }
+            int[] filas1 = numerosRandom(ej1);
+            int[] columnas1 = numerosRandom(ej1);
+            int[] filas2;
+            int[] columnas2;
+            do {
+                filas2 = numerosRandom(ej2);
+                columnas2 = numerosRandom(ej2);
+            } while (!diffCoordenadas(filas1, filas2, columnas1, columnas2));
+
+            inicializarEjercito(ejercito1, filas1, columnas1, 1);
+            inicializarEjercito(ejercito2, filas2, columnas2, 2);
+            inicializarTablero(tablero);
+            desplegarEjercito(tablero, ejercito1);
+            desplegarEjercito(tablero, ejercito2);
+            mostrarTablero(tablero);
+            soldadoMayorVida(ejercito1, 1);
+            soldadoMayorVida(ejercito2, 2);
+            vidaPromedio(ejercito1, 1);
+            vidaPromedio(ejercito2, 2);
+            mostrarEjercito(ejercito1, 1);
+            mostrarEjercito(ejercito2, 2);
+
+            System.out.println("Bajo que algoritmo de ordenamiento le gustaria ordenar su ejercito?");
+            System.out.println("1. Ordenamiento por burbuja");
+            System.out.println("2. Ordenamiento por insercion\n");
+            switch (sc.nextInt()) {
+                case 1:
+                    System.out.println("Ranking por Vida: \n");
+                    mostrarOrdenado(bubbleSort(ejercito1, 1), 1);
+                    mostrarOrdenado(bubbleSort(ejercito2, 2), 2);
+                    break;
+                case 2:
+                    System.out.println("Ranking por Vida: \n");
+                    mostrarOrdenado(insertionSort(ejercito1, 1), 1);
+                    mostrarOrdenado(insertionSort(ejercito2, 2), 2);
+                    break;
+                default:
+            }
+            System.out.println("Presione q para salir, o cualquier otra tecla para volver a jugar");
+        } while (sc.next() != "q");
+
     }
 
     public static void inicializarEjercito(HashMap<String, Soldado> army, int[] x, int[] y, int ej) {
