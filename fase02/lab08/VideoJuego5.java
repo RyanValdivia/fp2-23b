@@ -50,7 +50,8 @@ public class VideoJuego5 {
                 default:
             }
             System.out.println("Presione q para salir, o cualquier otra tecla para volver a jugar");
-        } while (sc.next() != "q");
+            ejercitoGanador(ejercito1, ejercito2);
+        } while (!sc.next().equals("q"));
 
     }
 
@@ -334,5 +335,23 @@ public class VideoJuego5 {
         for (Map.Entry<String, Soldado> entry : map.entrySet()) {
             mostrarSoldado(entry.getValue());
         }
+    }
+
+    public static void ejercitoGanador(Map<String, Soldado> map1, Map<String, Soldado> map2) {
+        int total1 = 0, total2 = 0;
+        for (Map.Entry<String, Soldado> entry : map1.entrySet()) {
+            total1 += entry.getValue().getVida();
+        }
+        for (Map.Entry<String, Soldado> entry : map2.entrySet()) {
+            total2 += entry.getValue().getVida();
+        }
+        if (total1 > total2) {
+            System.out.println("El ejercito 1 es ganador!");
+        } else if (total1 == total2) {
+            System.out.println("Hay empate!");
+        } else {
+            System.out.println("El ejercito 2 es ganador!");
+        }
+        System.out.println("Bajo la metrica de que ejercito tiene mas vida");
     }
 }
