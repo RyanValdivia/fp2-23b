@@ -46,7 +46,7 @@ public class VideoJuego4 {
             mostrarEjercito(ejercito1, 1);
             mostrarEjercito(ejercito2, 2);
             System.out.println("Presione q para salir, o cualquier otra tecla para volver a jugar");
-        } while (sc.next() != "q");
+        } while (!sc.next().equals("q"));
 
     }
 
@@ -297,5 +297,23 @@ public class VideoJuego4 {
         temp = flota[i];
         flota[i] = flota[j];
         flota[j] = temp;
+    }
+
+    public static void ejercitoGanador(Soldado[] f1, Soldado[] f2) {
+        int total1 = 0, total2 = 0;
+        for (int i = 0; i < f1.length; i++) {
+            total1 += f1[i].getVida();
+        }
+        for (int i = 0; i < f2.length; i++) {
+            total2 += f2[i].getVida();
+        }
+        if (total1 > total2) {
+            System.out.println("El ejercito 1 es ganador!");
+        } else if (total1 == total2) {
+            System.out.println("Hay empate!");
+        } else {
+            System.out.println("El ejercito 2 es ganador!");
+        }
+        System.out.println("Bajo la metrica de que ejercito tiene mas vida");
     }
 }
