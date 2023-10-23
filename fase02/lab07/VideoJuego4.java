@@ -46,6 +46,7 @@ public class VideoJuego4 {
             mostrarEjercito(ejercito1, 1);
             mostrarEjercito(ejercito2, 2);
             System.out.println("Presione q para salir, o cualquier otra tecla para volver a jugar");
+            ejercitoGanador(ejercito1, ejercito2);
         } while (!sc.next().equals("q"));
 
     }
