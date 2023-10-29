@@ -59,6 +59,18 @@ public class Soldado {
         return this.bandera;
     }
 
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public int getVida() {
+        return this.nVida;
+    }
+
+    public int getDefensa() {
+        return this.nDefensa;
+    }
+
     public void morir() {
         this.vivo = false;
         this.nombre = "          ";
