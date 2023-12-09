@@ -10,15 +10,21 @@ public class Soldier {
     private int row;
     private int column;
 
+    /**
+     * Genera un 'placeholder' de soldado, es decir, un soldado vacío
+     */
+
     Soldier() {
-        /* Genera un 'placeholder' de soldado, es decir, un soldado vacío */
         this.name = "          ";
         this.flag = "          ";
         this.alive = false;
     }
 
+    /**
+     * Genera un soldado con estadísticas aleatorias
+     */
+
     Soldier(int i, int id) {
-        /* Genera un soldado con estadísticas aleatorias */
         this.name = "Soldado" + i + "X" + id;
         int v = (int) (Math.random() * 5) + 1;
         int a = (int) (Math.random() * 5) + 1;
@@ -37,8 +43,9 @@ public class Soldier {
         }
     }
 
+    /** Genera un soldado con estadísticas específicas */
+
     Soldier(int a, int d, int hp, int i, int id) {
-        /* Genera un soldado con estadísticas específicas */
         this.name = "Soldado" + i + "X" + id;
 
         this.atk = a;
@@ -58,6 +65,14 @@ public class Soldier {
         this.column = x;
     }
 
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getColumn() {
+        return this.column;
+    }
+
     public void setHP(int v) {
         this.cHP = v;
     }
@@ -68,5 +83,21 @@ public class Soldier {
 
     public int getMaxHP() {
         return this.maxHP;
+    }
+
+    public boolean getStatus() {
+        return this.alive;
+    }
+
+    public String getFlag() {
+        return this.flag;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getDefense() {
+        return this.def;
     }
 }
