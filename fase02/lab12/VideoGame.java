@@ -138,12 +138,56 @@ public class VideoGame {
                                     }
                                 }
                                 break;
+                            case 4:
+                                System.out.println("Seleccione ejercito: ");
+                                if (sc.nextInt() == 1) {
+                                    modifySoldier(ej1, 1, table);
+                                } else {
+                                    modifySoldier(ej2, 2, table);
+                                }
+                                break;
+                            case 5:
+                                System.out.println("Opciones de comparacion: ");
+                                System.out.println("1. Nombre");
+                                System.out.println("2. Ataque");
+                                System.out.println("3. Defensa");
+                                System.out.println("4. Vida");
+                                System.out.println("5. Status");
+                                compareSoldiers(table, sc.nextInt());
+                            case 6:
+                                interchange(table);
+                                break;
+                            case 7:
+                                System.out.println("Seleccione ejercito: ");
+                                if (sc.nextInt() == 1) {
+                                    seeSoldier(ej1);
+                                } else {
+                                    seeSoldier(ej2);
+                                }
+                                break;
+                            case 8:
+                                System.out.println("Seleccione ejercito: ");
+                                if (sc.nextInt() == 1) {
+                                    showArmy(ej1, 1);
+                                } else {
+                                    showArmy(ej2, 2);
+                                }
+                            case 9:
+                                System.out.println("Seleccione ejercito: ");
+                                if (sc.nextInt() == 1) {
+                                    System.out.println("Ejercito 1:");
+                                    addLevels(ej1);
+                                } else {
+                                    System.out.println("Ejercito 2:");
+                                    addLevels(ej2);
+                                }
+                                break;
+                            case 10:
+                                gameStart(table, ej1, ej2);
                             default:
                                 break;
                         }
-
                     } while (o2 != 11);
-
                     break;
                 default:
                     break;
@@ -414,7 +458,7 @@ public class VideoGame {
         tb[y][x].die();
     }
 
-    public static int searchSoldier(ArrayList<Soldier> a, int id) {
+    public static int searchSoldier(ArrayList<Soldier> a) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese el nombre del soldado: ");
         String n = sc.next();
@@ -428,7 +472,7 @@ public class VideoGame {
 
     public static void cloneSoldier(ArrayList<Soldier> a, int id, Soldier[][] tb) {
         Scanner sc = new Scanner(System.in);
-        int i = searchSoldier(a, id);
+        int i = searchSoldier(a);
         int x, y;
         System.out.println("Seleccione las coordenadas a las que se desplegara la copia (x, y): ");
         do {
@@ -443,5 +487,123 @@ public class VideoGame {
         s.setPosition(y, x);
         s.setName("Soldado" + (a.size() - 1) + "X" + id);
         a.add(s);
+    }
+
+    public static void modifySoldier(ArrayList<Soldier> a, int id, Soldier[][] tb) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingresa el nombre del soldado a modificar: ");
+        int i = searchSoldier(a);
+        showSoldier(a.get(i));
+        System.out.println("Que estadistica desea modificar?");
+        System.out.println("1. Ataque");
+        System.out.println("2. Defensa");
+        System.out.println("3. Vida");
+        switch (sc.nextInt()) {
+            case 1:
+                System.out.println("Ingrese la nueva cantidad: ");
+                a.get(i).setAtk(sc.nextInt());
+                break;
+            case 2:
+                System.out.println("Ingrese la nueva cantidad: ");
+                a.get(i).setDef(sc.nextInt());
+                break;
+            case 3:
+                System.out.println("Ingrese la nueva cantidad: ");
+                a.get(i).setHP(sc.nextInt());
+                break;
+            default:
+                break;
+        }
+    }
+
+    public static void interchange(Soldier[][] tb) {
+        Scanner sc = new Scanner(System.in);
+        Soldier s = new Soldier();
+        System.out.println("Ingrese las coordenadas del primer soldado (x, y)");
+        int x, y, a, b;
+        do {
+            x = sc.nextInt();
+            y = sc.nextInt();
+            if (!tb[y][x].getStatus()) {
+                System.out.println("No hay ningun soldado alli!");
+            }
+        } while (!tb[y][x].getStatus());
+        System.out.println("Ingrese las coordenadas del segundo soldado");
+        do {
+            a = sc.nextInt();
+            b = sc.nextInt();
+            if (!tb[b][a].getStatus()) {
+                System.out.println("No hay ningun soldado alli!");
+            }
+        } while (!tb[b][a].getStatus());
+        s.copy(tb[y][x]);
+        tb[y][x].copy(tb[b][a]);
+        tb[b][a].copy(s);
+    }
+
+    public static void seeSoldier(ArrayList<Soldier> a) {
+        int i = searchSoldier(a);
+        showSoldier(a.get(i));
+    }
+
+    public static void addLevels(ArrayList<Soldier> a) {
+        Soldier s = new Soldier();
+        for (int i = 0; i < a.size(); i++) {
+            s.add(a.get(i));
+        }
+        System.out.println("El nivel total de vida es: " + s.getMaxHP());
+        System.out.println("El nivel total de defensa es: " + s.getDefense());
+        System.out.println("El nivel total de ataque es: " + s.getAtk());
+    }
+
+    public static void compareSoldiers(Soldier[][] tb, int id) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese las coordenadas del 1er soldado a comparar");
+        int x, y, a, b;
+        do {
+            x = sc.nextInt();
+            y = sc.nextInt();
+            if (!tb[y][x].getStatus()) {
+                System.out.println("No hay ningun soldado alli!");
+            }
+        } while (!tb[y][x].getStatus());
+        Soldier s1 = tb[y][x];
+        System.out.println("Ingrese las coordenadas del 2do soldado a comparar");
+        do {
+            a = sc.nextInt();
+            b = sc.nextInt();
+            if (!tb[b][a].getStatus()) {
+                System.out.println("No hay ningun soldado alli!");
+            }
+        } while (!tb[b][a].getStatus());
+        Soldier s2 = tb[b][a];
+        switch (id) {
+            case 1:
+                if (s1.getName().compareTo(s2.getName()) != 0) {
+                    System.out.println("No son iguales");
+                }
+                break;
+            case 2:
+                if (s1.getAtk() != s2.getAtk()) {
+                    System.out.println("No son iguales");
+                }
+                break;
+            case 3:
+                if (s2.getDefense() != s2.getDefense()) {
+                    System.out.println("No son iguales");
+                }
+                break;
+            case 4:
+                if (s1.getMaxHP() != s2.getMaxHP()) {
+                    System.out.println("No son iguales");
+                }
+                break;
+            case 5:
+                if (s1.getStatus() != s2.getStatus()) {
+                    System.out.println("No son iguales");
+                }
+            default:
+                break;
+        }
     }
 }

@@ -128,4 +128,26 @@ public class Soldier {
     public void curar(int n) {
         this.cHP = this.cHP + n;
     }
+
+    public void setName(String n) {
+        this.name = n;
+    }
+
+    public void setAtk(int a) {
+        this.atk = a;
+    }
+
+    public void setDef(int d) {
+        this.def = d;
+    }
+
+    public void add(Soldier s) {
+        this.atk += s.atk;
+        this.def += s.def;
+        this.maxHP += s.maxHP;
+    }
+
+    public int getAtk() {
+        return this.atk;
+    }
 }
