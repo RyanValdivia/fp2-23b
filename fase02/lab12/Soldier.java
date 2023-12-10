@@ -122,5 +122,10 @@ public class Soldier {
         this.setPosition(s.getColumn(), s.getRow());
         this.maxHP = s.maxHP;
         this.cHP = s.cHP;
+        this.id = s.id;
+    }
+
+    public void curar(int n) {
+        this.cHP = this.cHP + n;
     }
 }

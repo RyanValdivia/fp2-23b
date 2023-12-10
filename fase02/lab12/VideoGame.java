@@ -3,27 +3,58 @@ import java.util.*;
 public class VideoGame {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Bienvenido! Que quieres jugar?");
-        System.out.println("1. Juego rapido");
-        System.out.println("2. Juego personalizado");
+        int option;
+        do {
+            System.out.println("Bienvenido! Que quieres jugar?");
+            System.out.println("1. Juego rapido");
+            System.out.println("2. Juego personalizado");
+            System.out.println("3. Salir");
+            option = sc.nextInt();
+            if (option == 3) {
+                break;
+            }
+            switch (option) {
+                case 1:
+                    /* Juego normal */
+                    do {
+                        System.out.println("Presiona 'q' en cualquier momento para salir");
 
-        /* Juego normal */
+                        Soldier[][] table = new Soldier[10][10];
+                        initTable(table);
 
-        Soldier[][] table = new Soldier[10][10];
-        initTable(table);
+                        ArrayList<Soldier> ej1 = new ArrayList<Soldier>();
+                        initArmy(ej1, 1);
+                        ArrayList<Soldier> ej2 = new ArrayList<Soldier>();
+                        initArmy(ej2, 2);
 
-        ArrayList<Soldier> ej1 = new ArrayList<Soldier>();
-        initArmy(ej1, 1);
-        ArrayList<Soldier> ej2 = new ArrayList<Soldier>();
-        initArmy(ej2, 2);
+                        playArmy(ej1, table);
+                        playArmy(ej2, table);
 
-        playArmy(ej1, table);
-        playArmy(ej2, table);
+                        showTable(table);
 
-        showTable(table);
+                        gameStart(table, ej1, ej2);
 
-        gameStart(table, ej1, ej2);
-        showTable(table);
+                        System.out.println("Juego terminado");
+                        System.out.println("Presiona 1 para volver al menu principal");
+                        System.out.println("Presiona 2 para volver a jugar");
+                    } while (sc.nextInt() == 2);
+                    break;
+                case 2:
+                    /* Juego Personalizado */
+                    System.out.println("Presiona 'q' en cualquier momento para salir");
+
+                    Soldier[][] table = new Soldier[10][10];
+                    initTable(table);
+
+                    ArrayList<Soldier> ej1 = new ArrayList<Soldier>();
+                    initArmy(ej1, 1);
+                    ArrayList<Soldier> ej2 = new ArrayList<Soldier>();
+                    initArmy(ej2, 2);
+                    break;
+                default:
+                    break;
+            }
+        } while (option != 3);
 
     }
 
@@ -36,7 +67,7 @@ public class VideoGame {
     }
 
     public static void initArmy(ArrayList<Soldier> ar, int nro) {
-        int q = (int) (Math.random() * 5) + 1;
+        int q = (int) (Math.random() * 3) + 1;
         for (int i = 0; i < q; i++) {
             ar.add(new Soldier(i, nro));
         }
@@ -146,22 +177,36 @@ public class VideoGame {
         Scanner sc = new Scanner(System.in);
         int q1[] = new int[] { a1.size() };
         int q2[] = new int[] { a2.size() };
-        System.out.println(q1[0] + " X " + q2[0]);
         while (q1[0] != 0 || q2[0] != 0) {
-            turn(tb, a1, q2);
-            if (q1[0] == 0 || q2[0] == 0) {
+            System.out.println("Presiona cualquier boton para continuar: ");
+            if (sc.next().equals("q")) {
                 break;
             }
-            turn(tb, a2, q1);
-            if (q1[0] == 0 || q2[0] == 0) {
+            turn(tb, a1, q1, 1);
+            if (q1[0] == 0) {
+                System.out.println("El ejercito 2 gano!");
+                break;
+            } else if (q2[0] == 0) {
+                System.out.println("El ejercito 1 gano!");
+                break;
+            }
+            turn(tb, a2, q2, 2);
+            System.out.println("Presiona cualquier boton para continuar: ");
+            if (sc.next().equals("q")) {
+                break;
+            }
+            if (q1[0] == 0) {
+                System.out.println("El ejercito 2 gano!");
+                break;
+            } else if (q2[0] == 0) {
+                System.out.println("El ejercito 1 gano!");
                 break;
             }
         }
     }
 
-    public static void turn(Soldier[][] tb, ArrayList<Soldier> a, int[] c) {
+    public static void turn(Soldier[][] tb, ArrayList<Soldier> a, int[] c, int id) {
         Scanner sc = new Scanner(System.in);
-        int id = a.get(0).getId();
         System.out.println("Turno del ejercito " + id + " : ");
         System.out.println("Seleccione las coordenadas del soldado que movera (x, y): ");
         int x, y;
@@ -172,6 +217,8 @@ public class VideoGame {
                 System.out.println("Elige un soldado de tu propio ejercito!");
             }
         } while (tb[y][x].getId() != id);
+        System.out.println("Soldado a mover: ");
+        showSoldier(tb[y][x]);
         System.out.println("Seleccione las coordenadas hacia donde se movera su soldado: ");
         int x1, y1;
         do {
@@ -180,12 +227,15 @@ public class VideoGame {
             if (Math.abs(x1 - x) > 1 || Math.abs(y1 - y) > 1) {
                 System.out.println("Solo te puedes mover una casilla!");
             }
-        } while (Math.abs(x1 - x) > 1 || Math.abs(y1 - y) > 1);
+            if (x1 > 9 || y1 > 9) {
+                System.out.println("Ingresa coordenadas dentro del tablero!");
+            }
+        } while (Math.abs(x1 - x) > 1 || Math.abs(y1 - y) > 1 || x1 > 9 || y1 > 9);
         if (tb[y1][x1].getStatus()) {
             tb[y1][x1].copy(battle(tb[y][x], tb[y1][x1]));
+            tb[y1][x1].curar(1);
             tb[y][x].die();
             c[0]--;
-            tb[y1][x1].setHP(tb[y1][x1].getcHP() + 1);
 
         } else {
             tb[y1][x1].copy(tb[y][x]);
@@ -200,20 +250,31 @@ public class VideoGame {
         if (s1.getcHP() < s2.getcHP()) {
             if (r < s1.getcHP() / max) {
                 /* Gana s1 */
+                System.out.println("Gana " + s1.getName());
                 return s1;
 
             } else {
                 /* Gana s2 */
+                System.out.println("Gana " + s2.getName());
                 return s2;
             }
         } else {
             if (r < s2.getcHP() / max) {
                 /* Gana s2 */
+                System.out.println("Gana " + s2.getName());
                 return s2;
             } else {
                 /* Gana s1 */
+                System.out.println("Gana " + s1.getName());
                 return s1;
             }
         }
+    }
+
+    public static void showSoldier(Soldier s) {
+        System.out.println("Nombre: " + s.getName());
+        System.out.println("Vida: " + s.getcHP() + " / " + s.getMaxHP() + " HP");
+        System.out.println("Defensa: " + s.getDefense() + " DP");
+        System.out.println("Posicion (x, y): " + s.getColumn() + " - " + s.getRow() + "\n");
     }
 }
