@@ -22,6 +22,9 @@ public class VideoGame {
 
         showTable(table);
 
+        gameStart(table, ej1, ej2);
+        showTable(table);
+
     }
 
     public static void initTable(Soldier[][] tb) {
@@ -33,7 +36,7 @@ public class VideoGame {
     }
 
     public static void initArmy(ArrayList<Soldier> ar, int nro) {
-        int q = (int) (Math.random() * 10) + 1;
+        int q = (int) (Math.random() * 5) + 1;
         for (int i = 0; i < q; i++) {
             ar.add(new Soldier(i, nro));
         }
@@ -137,5 +140,80 @@ public class VideoGame {
             }
         }
         return franky;
+    }
+
+    public static void gameStart(Soldier[][] tb, ArrayList<Soldier> a1, ArrayList<Soldier> a2) {
+        Scanner sc = new Scanner(System.in);
+        int q1[] = new int[] { a1.size() };
+        int q2[] = new int[] { a2.size() };
+        System.out.println(q1[0] + " X " + q2[0]);
+        while (q1[0] != 0 || q2[0] != 0) {
+            turn(tb, a1, q2);
+            if (q1[0] == 0 || q2[0] == 0) {
+                break;
+            }
+            turn(tb, a2, q1);
+            if (q1[0] == 0 || q2[0] == 0) {
+                break;
+            }
+        }
+    }
+
+    public static void turn(Soldier[][] tb, ArrayList<Soldier> a, int[] c) {
+        Scanner sc = new Scanner(System.in);
+        int id = a.get(0).getId();
+        System.out.println("Turno del ejercito " + id + " : ");
+        System.out.println("Seleccione las coordenadas del soldado que movera (x, y): ");
+        int x, y;
+        do {
+            x = sc.nextInt();
+            y = sc.nextInt();
+            if (tb[y][x].getId() != id) {
+                System.out.println("Elige un soldado de tu propio ejercito!");
+            }
+        } while (tb[y][x].getId() != id);
+        System.out.println("Seleccione las coordenadas hacia donde se movera su soldado: ");
+        int x1, y1;
+        do {
+            x1 = sc.nextInt();
+            y1 = sc.nextInt();
+            if (Math.abs(x1 - x) > 1 || Math.abs(y1 - y) > 1) {
+                System.out.println("Solo te puedes mover una casilla!");
+            }
+        } while (Math.abs(x1 - x) > 1 || Math.abs(y1 - y) > 1);
+        if (tb[y1][x1].getStatus()) {
+            tb[y1][x1].copy(battle(tb[y][x], tb[y1][x1]));
+            tb[y][x].die();
+            c[0]--;
+            tb[y1][x1].setHP(tb[y1][x1].getcHP() + 1);
+
+        } else {
+            tb[y1][x1].copy(tb[y][x]);
+            tb[y][x].die();
+        }
+        showTable(tb);
+    }
+
+    public static Soldier battle(Soldier s1, Soldier s2) {
+        int max = s1.getcHP() + s2.getcHP();
+        double r = Math.random();
+        if (s1.getcHP() < s2.getcHP()) {
+            if (r < s1.getcHP() / max) {
+                /* Gana s1 */
+                return s1;
+
+            } else {
+                /* Gana s2 */
+                return s2;
+            }
+        } else {
+            if (r < s2.getcHP() / max) {
+                /* Gana s2 */
+                return s2;
+            } else {
+                /* Gana s1 */
+                return s1;
+            }
+        }
     }
 }

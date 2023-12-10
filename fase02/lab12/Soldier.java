@@ -34,6 +34,7 @@ public class Soldier {
         this.cHP = v;
         this.atk = a;
         this.def = d;
+        this.id = id;
 
         this.alive = true;
         if (id == 1) {
@@ -52,6 +53,7 @@ public class Soldier {
         this.def = d;
         this.cHP = hp;
         this.maxHP = hp;
+        this.id = id;
 
         if (id == 1) {
             this.flag = "##########";
@@ -99,5 +101,26 @@ public class Soldier {
 
     public int getDefense() {
         return this.def;
+    }
+
+    public void die() {
+        this.name = "          ";
+        this.flag = "          ";
+        this.maxHP = 0;
+        this.def = 0;
+        this.alive = false;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void copy(Soldier s) {
+        this.name = s.name;
+        this.flag = s.flag;
+        this.def = s.def;
+        this.setPosition(s.getColumn(), s.getRow());
+        this.maxHP = s.maxHP;
+        this.cHP = s.cHP;
     }
 }
