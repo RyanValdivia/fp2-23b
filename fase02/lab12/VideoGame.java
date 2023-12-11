@@ -28,9 +28,6 @@ public class VideoGame {
                         ArrayList<Soldier> ej2 = new ArrayList<Soldier>();
                         initArmy(ej2, 2, table);
 
-                        playArmy(ej1, table);
-                        playArmy(ej2, table);
-
                         showTable(table);
 
                         gameStart(table, ej1, ej2);
@@ -215,6 +212,7 @@ public class VideoGame {
                                 } else {
                                     showArmy(ej2, 2);
                                 }
+                                break;
                             case 9:
                                 System.out.println("Seleccione ejercito: ");
                                 if (sc.nextInt() == 1) {
@@ -248,7 +246,7 @@ public class VideoGame {
     }
 
     public static void initArmy(ArrayList<Soldier> ar, int nro, Soldier[][] tb) {
-        int q = (int) (Math.random() * 3) + 1;
+        int q = (int) (Math.random() * 10) + 1;
         for (int i = 0; i < q; i++) {
             ar.add(new Soldier(i, nro));
         }
@@ -260,6 +258,7 @@ public class VideoGame {
                 x = (int) (Math.random() * 10);
             } while (tb[y][x].getStatus());
             ar.get(i).setPosition(y, x);
+            tb[y][x] = ar.get(i);
         }
     }
 
@@ -413,7 +412,13 @@ public class VideoGame {
             if (x1 > 9 || y1 > 9) {
                 System.out.println("Ingresa coordenadas dentro del tablero!");
             }
-        } while (Math.abs(x1 - x) > 1 || Math.abs(y1 - y) > 1 || x1 > 9 || y1 > 9);
+            if (tb[y1][x1].getId() == id) {
+                System.out.println("No puedes atacar a tu propio ejercito!");
+            }
+        } while (Math.abs(x1 - x) > 1 || Math.abs(y1 - y) > 1 || x1 > 9 || y1 > 9 || tb[y1][x1].getId() == id);
+        if (tb[y1][x1].getId() == id) {
+            System.out.println("No puedes atacar a tu propio ejercito!");
+        }
         if (tb[y1][x1].getStatus()) {
             tb[y1][x1].copy(battle(tb[y][x], tb[y1][x1]));
             tb[y1][x1].curar(1);
