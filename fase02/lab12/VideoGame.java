@@ -40,8 +40,51 @@ public class VideoGame {
                         System.out.println("Presiona 2 para volver a jugar");
                         System.out.println("Presiona 3 para otras opciones: ");
                         o1 = sc.nextInt();
-                        if (o1 == 3) {
-                        }
+                        int o2;
+                        do {
+                            System.out.println("1. Soldado con mayor vida");
+                            System.out.println("2. Promedio de vida y total");
+                            System.out.println("3. Datos de todos los soldados");
+                            System.out.println("4. Ranking de poder");
+                            System.out.println("5. Salir");
+                            o2 = sc.nextInt();
+                            switch (o2) {
+                                case 1:
+                                    System.out.println("Seleccione ejercito: ");
+                                    if (sc.nextInt() == 1) {
+                                        sMaxHP(ej1, 1);
+                                    } else {
+                                        sMaxHP(ej2, 2);
+                                    }
+                                    break;
+                                case 2:
+                                    System.out.println("Seleccione ejercito: ");
+                                    if (sc.nextInt() == 1) {
+                                        avgAndTotal(ej1, 1);
+                                    } else {
+                                        avgAndTotal(ej2, 2);
+                                    }
+                                    break;
+                                case 3:
+                                    System.out.println("Seleccione ejercito: ");
+                                    if (sc.nextInt() == 1) {
+                                        showArmy(ej1, 1);
+                                    } else {
+                                        showArmy(ej2, 2);
+                                    }
+                                    break;
+                                case 4:
+                                    System.out.println("Seleccione ejercito: ");
+                                    if (sc.nextInt() == 1) {
+                                        ranking(ej1, 1);
+                                    } else {
+                                        ranking(ej2, 2);
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        } while (o2 != 5);
 
                     } while (o1 == 2);
                     break;
@@ -605,5 +648,73 @@ public class VideoGame {
             default:
                 break;
         }
+    }
+
+    public static void sMaxHP(ArrayList<Soldier> s, int id) {
+        int max = 0;
+        for (int i = 0; i < s.size(); i++) {
+            if (s.get(i).getMaxHP() > s.get(max).getMaxHP()) {
+                max = i;
+            }
+        }
+        System.out.println("El soldado con mayor vida del ejercito " + id + " es:");
+        showSoldier(s.get(max));
+    }
+
+    public static void avgAndTotal(ArrayList<Soldier> s, int id) {
+        Soldier a = new Soldier();
+        for (int i = 0; i < s.size(); i++) {
+            a.add(s.get(i));
+        }
+        double n = a.getMaxHP() / s.size();
+        System.out.println("El total de vida del ejercito " + id + " es: " + a.getMaxHP());
+        System.out.println("La vida promedio del ejercito " + id + " es: " + n);
+    }
+
+    public static void bubbleSort(ArrayList<Soldier> a) {
+        for (int i = 0; i < a.size(); i++) {
+            for (int j = 0; j < a.size() - 1; j++) {
+                if (a.get(j).getMaxHP() < a.get(j + 1).getMaxHP()) {
+                    intercambiar(a, j, j + 1);
+                }
+            }
+        }
+    }
+
+    public static void insertionSort(ArrayList<Soldier> a) {
+        for (int i = 0; i < a.size(); i++) {
+            Soldier s = a.get(i);
+            int j = i;
+            for (j = 1; 0 < j && a.get(j - 1).getMaxHP() < s.getMaxHP(); j--) {
+                a.set(j, a.get(j - 1));
+            }
+            a.set(j, s);
+        }
+    }
+
+    public static void ranking(ArrayList<Soldier> a, int id) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Que algoritmo de ordenamiento le gustaria usar?");
+        System.out.println("1. Bubble Sort");
+        System.out.println("2. Insertion Sort");
+        switch (sc.nextInt()) {
+            case 1:
+                bubbleSort(a);
+                showArmy(a, id);
+                break;
+            case 2:
+                insertionSort(a);
+                showArmy(a, id);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public static void intercambiar(ArrayList<Soldier> a, int i, int j) {
+        Soldier temp;
+        temp = a.get(i);
+        a.set(i, a.get(j));
+        a.set(j, temp);
     }
 }
