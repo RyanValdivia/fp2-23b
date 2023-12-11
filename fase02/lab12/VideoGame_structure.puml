@@ -1,0 +1,169 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "VideoGame",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_365946526 { 
+   	label=Soldier
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Soldier365946526[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Soldier</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   alive: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   atk: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cHP: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   column: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   def: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   flag: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   maxHP: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   row: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add(s: Soldier)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ copy(s: Soldier)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ curar(n: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ die()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_958447891 { 
+   	label=VideoGame
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   VideoGame958447891[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)VideoGame</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addLevels(a: ArrayList&lt;Soldier&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ avgAndTotal(s: ArrayList&lt;Soldier&gt;, id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ battle(s1: Soldier, s2: Soldier): Soldier</TD></TR>
+<TR><TD ALIGN="LEFT" >+ bubbleSort(a: ArrayList&lt;Soldier&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ cloneSoldier(a: ArrayList&lt;Soldier&gt;, id: int, tb: Soldier[][])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ compareSoldiers(tb: Soldier[][], id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ crearTecho(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ createSoldier(a: ArrayList&lt;Soldier&gt;, id: int, tb: Soldier[][])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deleteSoldier(tb: Soldier[][])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ gameStart(tb: Soldier[][], a1: ArrayList&lt;Soldier&gt;, a2: ArrayList&lt;Soldier&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initArmy(ar: ArrayList&lt;Soldier&gt;, nro: int, tb: Soldier[][])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initTable(tb: Soldier[][])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertionSort(a: ArrayList&lt;Soldier&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ intercambiar(a: ArrayList&lt;Soldier&gt;, i: int, j: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ interchange(tb: Soldier[][])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ modifySoldier(a: ArrayList&lt;Soldier&gt;, id: int, tb: Soldier[][])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ playArmy(ar: ArrayList&lt;Soldier&gt;, tb: Soldier[][])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ ranking(a: ArrayList&lt;Soldier&gt;, id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sMaxHP(s: ArrayList&lt;Soldier&gt;, id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchSoldier(a: ArrayList&lt;Soldier&gt;): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ seeSoldier(a: ArrayList&lt;Soldier&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ separadorInf(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ separadorSup(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showArmy(s: ArrayList&lt;Soldier&gt;, id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showSoldier(s: Soldier)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showTable(tb: Soldier[][])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ turn(tb: Soldier[][], a: ArrayList&lt;Soldier&gt;, c: int[], id: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+
+    
+}
+@enduml
