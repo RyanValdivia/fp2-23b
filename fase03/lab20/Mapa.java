@@ -30,7 +30,7 @@ public class Mapa {
             s.setCol(y);
             table[y][x] = s;
         }
-        if (search(territory, territories) == search(a.getReino(), a.getReinos())) {
+        if (search(this.territory, this.territories) == search(a.getReino(), a.getReinos())) {
             a.perk();
         }
     }
