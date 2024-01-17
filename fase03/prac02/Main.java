@@ -1,8 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        Controller c1 = new Controller();
-        Controller c2 = new Controller();
-        Controller c3 = new Controller();
+        Controller c1 = Controller.getInstance();
+        Controller c2 = Controller.getInstance();
+        Controller c3 = Controller.getInstance();
 
         System.out.println(c1.hashCode());
         System.out.println(c2.hashCode());

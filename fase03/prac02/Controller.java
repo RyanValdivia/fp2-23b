@@ -5,10 +5,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Controller {
+    private static Controller controller;
 
     private static final String URL = "jdbc:mysql://localhost:3306/fp2_23b";
     private static final String USUARIO = "fp2_23b";
     private static final String CONTRASENA = "1604";
+
+    private Controller() {
+    }
+
+    public static Controller getInstance() {
+        if (controller == null) {
+            controller = new Controller();
+        }
+        return controller;
+    }
 
     public static void main(String[] args) {
         Connection conexion = null;
