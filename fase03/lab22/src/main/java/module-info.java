@@ -3,6 +3,6 @@ module com.example.lab22 {
     requires javafx.fxml;
 
 
-    opens Lab22 to javafx.fxml;
-    exports Lab22;
+    opens com.example.lab22 to javafx.fxml;
+    exports com.example.lab22;
 }

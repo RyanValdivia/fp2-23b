@@ -1,4 +1,4 @@
-package Lab22;
+package com.example.lab22;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,12 +7,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class VideoJuego extends Application {
+public class HelloApplication extends Application {
+
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(VideoJuego.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 670, 670);
+        stage.setTitle("VideoJuego");
         stage.setScene(scene);
         stage.show();
     }
@@ -21,3 +23,6 @@ public class VideoJuego extends Application {
         launch();
     }
 }
+
+
+

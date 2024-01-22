@@ -1,7 +1,7 @@
-package Lab22;
+package com.example.lab22;
 import java.util.*;
 
-abstract class Soldier {
+public class Soldier {
     protected String name;
     protected String alias;
     protected int HP;
@@ -10,12 +10,65 @@ abstract class Soldier {
     protected int x;
     protected int y;
     protected boolean status;
+    private String color;
+    private int armyId;
 
     public Soldier(String name){
         this.name = name;
         this.status = true;
     }
-    abstract void action();
+    public Soldier(){
+        this.name = "";
+        this.alias = "";
+        this.color = "#cdcdcd";
+        this.status = false;
+    }
+   public void action(){};
+    public static Soldier winner(Soldier s1, Soldier s2){
+        Random random = new Random();
+        double h1 = s1.getHP();
+        double h2 = s2.getHP();
+        double total = h1 + h2;
+        h1 /= total;
+        h2 /= total;
+        double ans = random.nextDouble();
+        if(h2 < h1){
+            if(ans <= h2){
+                return s2;
+            }else{
+                return s1;
+            }
+        }else{
+            if(ans <= h1){
+                return s1;
+            }else{
+                return s2;
+            }
+        }
+
+    }
+    public void copy(Soldier source){
+        this.name = source.name;
+        this.alias = source.alias;
+        this.HP = source.HP;
+        this.attack = source.attack;
+        this.defense = source.defense;
+        this.x = source.x;
+        this.y = source.y;
+        this.color = source.color;
+        this.status = source.status;
+        this.armyId = source.armyId;
+    }
+    public void destroy(){
+        this.name = "";
+        this.alias = "";
+        this.HP = 0;
+        this.attack = 0;
+        this.defense = 0;
+        this.status = false;
+        this.color = "#cdcdcd";
+        this.armyId = 0;
+    }
 
     public String getName() {
         return name;
@@ -61,6 +114,22 @@ abstract class Soldier {
         return x;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getArmyId() {
+        return armyId;
+    }
+
+    public void setArmyId(int armyId) {
+        this.armyId = armyId;
+    }
+
     public void setX(int x) {
         this.x = x;
     }
@@ -73,7 +142,7 @@ abstract class Soldier {
         this.y = y;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -103,7 +172,7 @@ class Archer extends Soldier{
 
     //Shoots one arrow to an enemy
     @Override
-    void action(){
+    public void action(){
         this.arrows--;
     }
 }
@@ -138,7 +207,7 @@ class Knight extends Soldier{
     //If it's unmounted, it will mount and its weapon will change to a Sword, if not,
     // it will unmount and its weapon will change to a Spear
     @Override
-    void action(){
+    public void action(){
         this.isMounted = !this.isMounted;
 
         if(this.isMounted){
@@ -166,7 +235,7 @@ class Swordsman extends Soldier{
 
     //This will set a wall of shields, and increase its defense by 1
     @Override
-    void action(){
+    public void action(){
         this.setDefense(this.getDefense() + 1);
     }
 }
@@ -188,7 +257,8 @@ class Spearman extends Soldier{
 
     //This will make a schiltrom and will increase its defense by 1
     @Override
-    void action(){
+    public void action(){
         this.setDefense(this.getDefense() + 1);
     }
 }
+
