@@ -41,10 +41,12 @@ public class HelloController {
         runGame();
     }
 
-    private void runGame() {
+    public void runGame() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             if (!gameOver) {
+                gameOver();
                 placeSoldiers();
+
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -134,14 +136,21 @@ public class HelloController {
         alert.setContentText(contentText);
         alert.showAndWait();
     }
-    private static void battle(Soldier s1, Soldier s2){
+    private void battle(Soldier s1, Soldier s2){
         Soldier winner = Soldier.winner(s1, s2);
+
+        if(winner.getArmyId() == 1){
+            nEj2--;
+        }else{
+            nEj1--;
+        }
 
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Batalla");
         alert.setHeaderText(null);
         alert.setContentText("Los dos soldados batallaron, el ganador fue: " + winner.getName());
+
         alert.showAndWait();
 
         s2.copy(winner);
@@ -152,15 +161,14 @@ public class HelloController {
         s2.copy(s1);
         s1.destroy();
     }
-    private void gameOver(){
+    public void gameOver(){
             if (nEj1 == 0 || nEj2 == 0) {
+                gameOver = true;
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Juego Terminado");
                 alert.setHeaderText(null);
                 alert.setContentText("El ganador es el Ejército " + (nEj1 == 0 ? 2 : 1));
                 alert.showAndWait();
-                gameOver = true;
-
                 // Cerrar la aplicación después de mostrar el mensaje de juego terminado
                 Platform.exit();
             }
