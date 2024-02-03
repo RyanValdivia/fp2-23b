@@ -1,0 +1,90 @@
+/* Estilos para el VBox (contenedor principal) */
+.vbox {
+    -fx-spacing: 20px;
+    -fx-background-color: #000;
+    -fx-alignment: center;
+    -fx-halignment: center;
+}
+.toolBar{
+    -fx-max-width: 626px;
+}
+/* Estilos para el GridPane */
+#board {
+    -fx-max-width: 626px;
+    -fx-max-height: 624px;
+    -fx-padding: 10px;
+    -fx-border-color: #000;
+    -fx-border-width: 2px;
+
+}
+
+/* Estilos para los botones */
+.button {
+    -fx-min-width: 60px;
+    -fx-min-height: 60px;
+    -fx-max-width: 60px;
+    -fx-max-height: 60px;
+    -fx-background-color: #fff; /* Color de fondo blanco por defecto */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-color: #000;
+    -fx-border-width: 2px;
+}
+#closeButton{
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../img/x-circle-regular-24.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+#minimizeButton{
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../img/minus-regular-24.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+#expandButton{
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../img/expand-alt-regular-24.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+#nextButton{
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../img/skip-next-circle-regular-24.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+#loadButton{
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../img/folder-open-regular-24.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+#saveButton{
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../img/save-regular-24.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+#infoButton{
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../img/info-circle-regular-24.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+

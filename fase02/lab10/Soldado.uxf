@@ -1,0 +1,25 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>16</x><y>70</y><w>320</w><h>390</h></coordinates><panel_attributes>Soldado
+--
++nombre : String
++int nAtaque
++int nDefensa
++int nVida
++int vidaActual
++String estado
++boolean vivo
++int fila
++int columna
++String bandera
+--
++Soldado()
++Soldado(name: String, atk: int, def: int, hp: int, nro: int)
++moverSoldado(x: int, y: int) : void
++setVidaActual(s: int) : void
++getVidaActual() : int
++getFila() : int
++getColumna() : int
++getBandera() : String
++getNombre() : String
++getVida() : int
++getDefensa() : int
++morir() : void</panel_attributes><additional_attributes></additional_attributes></element></diagram>

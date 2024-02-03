@@ -1,0 +1,17 @@
+.content{
+    -fx-max-width: 626px;
+    -fx-max-height: 624px;
+    -fx-background-color: black;
+    -fx-background-image: url("../img/fondo.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+.root{
+    -fx-alignment: center;
+    -fx-halignment: center;
+    -fx-background-color: black;
+}
+.button{
+    -fx-background-color: #CDA434;
+    -fx-border-color: black;
+}

@@ -144,4 +144,10 @@ public class Army {
     public void setnSpears(int nSpears) {
         this.nSpears = nSpears;
     }
+    public void clearSoldiers(){
+        this.getSoldiers().removeAll(this.getSoldiers());
+    }
+    public void addSoldier(Soldier s){
+        this.getSoldiers().add(s);
+    }
 }

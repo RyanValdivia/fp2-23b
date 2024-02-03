@@ -47,17 +47,36 @@ public class Soldier {
         }
 
     }
-    public void copy(Soldier source){
-        this.name = source.name;
-        this.alias = source.alias;
-        this.HP = source.HP;
-        this.attack = source.attack;
-        this.defense = source.defense;
-        this.x = source.x;
-        this.y = source.y;
-        this.color = source.color;
-        this.status = source.status;
-        this.armyId = source.armyId;
+    @Override
+    public String toString(){
+        return name + ", " + alias + ", " + HP + ", " + attack + ", "  + defense + ", " + armyId + ", " + x + ", " + y + ", " + status + ", " + color;
+    }
+    public static Soldier parseSoldier(String data){
+        String[] parts = data.split(", ");
+        String name = parts[0];
+        String alias = parts[1];
+        int hp = Integer.parseInt(parts[2]);
+        int attack = Integer.parseInt(parts[3]);
+        int defense = Integer.parseInt(parts[4]);
+        int armyId = Integer.parseInt(parts[5]);
+        int x = Integer.parseInt(parts[6]);
+        int y = Integer.parseInt(parts[7]);
+        boolean status = Boolean.parseBoolean(parts[8]);
+        String color = parts[9];
+
+        Soldier soldier = new Soldier(name);
+        soldier.setX(x);
+        soldier.setY(y);
+        soldier.setAlias(alias);
+        soldier.setHP(hp);
+        soldier.setAttack(attack);
+        soldier.setDefense(defense);
+        soldier.setColor(color);
+        soldier.setArmyId(armyId);
+        soldier.setStatus(status);
+
+        return soldier;
+
     }
     public void destroy(){
         this.name = "";

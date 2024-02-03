@@ -46,7 +46,7 @@ class Circulo extends Punto {
 }
 
 // Ejemplo de uso
-public class Main {
+public class Ejercicio01{
     public static void main(String[] args) {
         // Crear dos puntos
         Punto punto1 = new Punto(1, 2);

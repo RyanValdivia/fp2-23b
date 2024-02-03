@@ -246,7 +246,7 @@ public class VideoGame {
     }
 
     public static void initArmy(ArrayList<Soldier> ar, int nro, Soldier[][] tb) {
-        int q = (int) (Math.random() * 10) + 1;
+        final int q = (int) (Math.random() * 10) + 1;
         for (int i = 0; i < q; i++) {
             ar.add(new Soldier(i, nro));
         }

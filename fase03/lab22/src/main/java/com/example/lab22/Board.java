@@ -32,6 +32,13 @@ public class Board {
             table[y][x] = s;
         }
     }
+    public void deployArmy(Army a){
+        for(Soldier s: a.getSoldiers()){
+            int x = s.getX();
+            int y = s.getY();
+            table[y][x] = s;
+        }
+    }
 
     public Soldier[][] getTable() {
         return table;
