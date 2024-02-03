@@ -1,1 +1,1 @@
-El soldado , , 0, 0, 0, 0, 1, 4, false, #cdcdcd ha muerto
+El soldado Lancero3X1 ha sido seleccionado
